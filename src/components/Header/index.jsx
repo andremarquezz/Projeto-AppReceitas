@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import IconProfile from '../../images/profileIcon.svg';
+import IconSearch from '../../images/searchIcon.svg';
 
 function Header({ pageTittle }) {
   return (
     <header>
-      <p data-testid="profile-top-btn">Profile</p>
+      <img src={ IconProfile } alt="Icone do Perfil" data-testid="profile-top-btn" />
       <h3 data-testid="page-title">{pageTittle}</h3>
       <button type="button" data-testid="search-top-btn">
-        Pesquisar
+        <img src={ IconSearch } alt="Icone de busca" />
       </button>
     </header>
   );
