@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { saveLocalStorage } from '../../services/LocalStorage';
 import styles from './index.css';
 
 function Login() {
+  const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -20,7 +22,8 @@ function Login() {
   const handleLocalStorage = () => {
     saveLocalStorage('mealsToken', 1);
     saveLocalStorage('cocktailsToken', 1);
-    saveLocalStorage('user', email);
+    saveLocalStorage('user', { email });
+    history.push('/foods');
   };
 
   return (
