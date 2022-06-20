@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { saveLocalStorage } from '../../services/LocalStorage';
 import styles from './index.css';
 
 function Login() {
@@ -15,10 +16,17 @@ function Login() {
     const hasErrors = errors.some((error) => error);
     return hasErrors;
   };
+
+  const handleLocalStorage = () => {
+    saveLocalStorage('mealsToken', 1);
+    saveLocalStorage('cocktailsToken', 1);
+    saveLocalStorage('user', email);
+  };
+
   return (
     <div className={ styles.loginContainer }>
       <div className={ styles.loginContent }>
-        <form>
+        <form onSubmit={ handleLocalStorage }>
           <h3>Login</h3>
           <input
             type="email"
@@ -35,7 +43,7 @@ function Login() {
             onChange={ ({ target }) => setPassword(target.value) }
           />
           <button
-            type="button"
+            type="submit"
             data-testid="login-submit-btn"
             disabled={ verifyInputs() }
           >
