@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import Search from '../../components/Search';
 import { saveLocalStorage } from '../../services/LocalStorage';
 import styles from './index.css';
 
@@ -31,6 +32,7 @@ function Login() {
       <div className={ styles.loginContent }>
         <form onSubmit={ handleLocalStorage }>
           <h3>Login</h3>
+          <Search />
           <input
             type="email"
             placeholder="Email"
