@@ -2,72 +2,88 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Login from '../Pages/Login';
-import App from '../App';
 import renderWithRouter from './RenderWithRouter';
+import { emailInputTestId,
+  passwordInputTestId,
+  loginButtonTestId,
+  correctEmail,
+  correctPassword,
+  wrongEmail,
+  wrongPassword,
+} from './testData';
 
 describe('Teste da tela de Login', () => {
   it('Testa se pagina inicial  é renderizada corretamente', () => {
-    const { history, debug } = renderWithRouter(<Login />);
-    debug();
+    const { history } = renderWithRouter(<Login />);
     expect(history.location.pathname).toBe('/');
   });
 
-  // it('Verifica se existe na pagina os campos de nome e email', () => {
-  //   const inputName = screen.getByTestId('input-player-name');
-  //   const inputEmail = screen.getByTestId('input-gravatar-email');
+  it('Verifica se existe na pagina um botao `Enter` e campos de Email e Senha', () => {
+    renderWithRouter(<Login />);
+    const inputEmail = screen.getByTestId(emailInputTestId);
+    const inputPassword = screen.getByTestId(passwordInputTestId);
+    const button = screen.getByTestId(loginButtonTestId);
 
-  //   expect(inputName).toBeInTheDocument();
-  //   expect(inputEmail).toBeInTheDocument();
-  // });
+    expect(inputEmail).toBeInTheDocument();
+    expect(inputPassword).toBeInTheDocument();
+    expect(button).toBeInTheDocument();
+    expect(button).toHaveTextContent('Enter');
+  });
 
-  // it('Verifica se existe um botão com o texto "Play"', () => {
-  //   renderWithRouterAndRedux(<Login />);
+  it('Realize as seguintes verificações nos campos de email, senha e botão:', () => {
+    renderWithRouter(<Login />);
 
-  //   const button = screen.getByTestId('btn-play');
-  //   expect(button).toBeInTheDocument();
-  //   expect(button).toHaveTextContent('Play');
-  // });
+    const button = screen.getByTestId(loginButtonTestId);
+    expect(button).toBeDisabled();
 
-  // it('Realize as seguintes verificações nos campos de email, senha e botão:', () => {
-  //   renderWithRouterAndRedux(<Login />);
+    const email = screen.getByTestId(emailInputTestId);
+    const password = screen.getByTestId(passwordInputTestId);
 
-  //   const button = screen.getByTestId('btn-play');
-  //   expect(button).toBeDisabled();
+    userEvent.type(email, wrongEmail);
+    userEvent.type(password, wrongPassword);
+    expect(button).toBeDisabled();
 
-  //   const name = screen.getByTestId('input-player-name');
-  //   const email = screen.getByTestId('input-gravatar-email');
+    userEvent.type(email, correctEmail);
+    userEvent.type(password, ' ');
+    expect(button).toBeDisabled();
 
-  //   userEvent.type(name, 'Teste');
-  //   userEvent.type(email, 'teste');
-  //   expect(button).toBeDisabled();
+    userEvent.type(email, ' ');
+    userEvent.type(password, wrongPassword);
+    expect(button).toBeDisabled();
 
-  //   userEvent.type(name, ' ');
-  //   userEvent.type(email, 'teste@teste.com');
-  //   expect(button).toBeDisabled();
+    userEvent.type(email, correctEmail);
+    userEvent.type(password, correctPassword);
+    expect(button).toBeEnabled();
+  });
 
-  //   userEvent.type(name, 'Teste');
-  //   userEvent.type(email, ' ');
-  //   expect(button).toBeDisabled();
+  it('Verifica se as chaves estão sendo salvas no localStorage', () => {
+    renderWithRouter(<Login />);
+    const button = screen.getByTestId(loginButtonTestId);
+    const email = screen.getByTestId(emailInputTestId);
+    const password = screen.getByTestId(passwordInputTestId);
+    userEvent.type(email, correctEmail);
+    userEvent.type(password, correctPassword);
+    userEvent.click(button);
 
-  //   userEvent.type(name, 'Teste');
-  //   userEvent.type(email, 'teste@teste.com');
-  //   expect(button).toBeEnabled();
-  // });
+    const mealsToken = localStorage.getItem('mealsToken');
+    const cocktailsToken = localStorage.getItem('cocktailsToken');
+    const userToken = localStorage.getItem('user');
 
-  // // TODO:  Fazer teste da resposta do fetch.
-  // it('Testa se ao clicar em Play o Token é pego', () => {
-  //   const { history } = renderWithRouterAndRedux(<App />);
-  //   const inputName = screen.getByTestId('input-player-name');
-  //   const inputEmail = screen.getByTestId('input-gravatar-email');
-  //   const button = screen.getByTestId('btn-play');
+    expect(mealsToken).toBe('1');
+    expect(cocktailsToken).toBe('1');
+    expect(JSON.parse(userToken)).toStrictEqual({ email: correctEmail });
+  });
 
-  //   userEvent.type(inputName, 'Teste');
-  //   userEvent.type(inputEmail, 'teste@teste.com');
-  //   expect(button).toBeEnabled();
+  it('Verifica se é redirecionado para tela principal de receitas de comidas', () => {
+    const { history } = renderWithRouter(<Login />);
+    const button = screen.getByTestId(loginButtonTestId);
+    const email = screen.getByTestId(emailInputTestId);
+    const password = screen.getByTestId(passwordInputTestId);
+    userEvent.type(email, correctEmail);
+    userEvent.type(password, correctPassword);
+    userEvent.click(button);
 
-  //   userEvent.click(button);
-  //   expect(mockFetch).toHaveBeenCalledTimes(1);
-  //   history.push('/game');
-  //   expect(history.location.pathname).toBe('/game');
-  // });
+    const { location } = history;
+    expect(location.pathname).toBe('/foods');
+  });
 });
