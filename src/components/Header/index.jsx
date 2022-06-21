@@ -14,21 +14,21 @@ function Header({ pageTittle, buttonSearch }) {
         <img src={ IconProfile } alt="Icone do Perfil" data-testid="profile-top-btn" />
       </button>
       <h3 data-testid="page-title">{pageTittle}</h3>
-
       {buttonSearch && (
         <button type="button" onClick={ () => setInputSearch(!inputSearch) }>
           <img src={ IconSearch } alt="Icone de busca" data-testid="search-top-btn" />
         </button>
       )}
-
-      {inputSearch && (
-        <input
-          type="text"
-          name="inputSearch"
-          placeholder="Pesquisar"
-          data-testid="search-input"
-        />
-      )}
+      <div>
+        {inputSearch && (
+          <input
+            type="text"
+            name="inputSearch"
+            placeholder="Pesquisar"
+            data-testid="search-input"
+          />
+        )}
+      </div>
     </header>
   );
 }
