@@ -26,11 +26,13 @@ function Routes() {
       <Route exact path="/foods/:id/in-progress" component={ ScreenFoodProgress } />
       <Route exact path="/foods/:id" component={ FoodsScreenDetails } />
       <Route exact path="/foods" component={ FoodsMainScreen } />
+
       <Route exact path="/explore/drinks/ingredients" component={ DrinksIngredients } />
       <Route exact path="/explore/drinks" component={ DrinksScreenExplore } />
       <Route exact path="/drinks/:id/in-progress" component={ DrinksScreenProgress } />
       <Route exact path="/drinks/:id" component={ DrinksScreenDetails } />
       <Route exact path="/drinks" component={ DrinksMainScreen } />
+
       <Route exact path="/explore" component={ ScreenExploreMain } />
       <Route exact path="/profile" component={ ScreenProfile } />
       <Route exact path="/done-recipes" component={ ScreenDoneRecipes } />
