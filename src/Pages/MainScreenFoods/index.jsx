@@ -1,4 +1,6 @@
 import React from 'react';
+import Footer from '../../components/Footer';
+import Header from '../../components/Header';
 
 import './index.css';
 
@@ -7,6 +9,7 @@ const name = 'Chelsea Buns';
 function MainScreenFoods() {
   return (
     <div className="main-foods-container">
+      <Header pageTittle="Foods" buttonSearch />
       <div className="main-foods-content">
         <div className="filters-button">
           <button type="button" className="btn-filter">All</button>
@@ -33,6 +36,7 @@ function MainScreenFoods() {
             <strong>{ name }</strong>
           </li>
         </ul>
+        <Footer />
       </div>
     </div>
   );
