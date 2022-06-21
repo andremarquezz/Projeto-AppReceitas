@@ -3,7 +3,8 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Login from '../Pages/Login';
 import renderWithRouter from './RenderWithRouter';
-import { emailInputTestId,
+import {
+  emailInputTestId,
   passwordInputTestId,
   loginButtonTestId,
   correctEmail,
