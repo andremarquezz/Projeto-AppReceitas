@@ -6,7 +6,7 @@ import App from '../App';
 import renderWithRouter from './RenderWithRouter';
 
 describe('Teste da tela de Login', () => {
-  it('Testa se pagina inicial é renderizada corretamente', () => {
+  it('Testa se pagina inicial  é renderizada corretamente', () => {
     const { history, debug } = renderWithRouter(<Login />);
     debug();
     expect(history.location.pathname).toBe('/');
