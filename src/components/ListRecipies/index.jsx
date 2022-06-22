@@ -5,8 +5,9 @@ import { actionFilteredData } from '../../redux/slices/filterSlice';
 
 import './index.css';
 
+const MAX_LENGTH = 12;
+
 function ListRecipies() {
-  // const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
@@ -24,11 +25,6 @@ function ListRecipies() {
     const fetchApi = async () => {
       const apiData = await apiFilter('meal', 'name', '');
       dispatch(actionFilteredData(apiData));
-      const response = await fetch(
-        ('https://www.themealdb.com/api/json/v1/1/search.php?s='),
-      );
-      const responseJson = await response.json();
-      return setData(responseJson.meals);
     };
     fetchApi();
   }, []);
@@ -48,7 +44,7 @@ function ListRecipies() {
           <button type="button" className="btn-filter">Dessert</button>
         </div>
         <ul className="foods-list">
-          {data?.map((item, index) => (
+          {data?.slice(0, MAX_LENGTH).map((item, index) => (
             <li key={ index } className="foods-list-item">
               <img
                 src={ item.strMealThumb }
