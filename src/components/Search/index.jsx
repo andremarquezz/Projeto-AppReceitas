@@ -25,7 +25,7 @@ export default function Search() {
   };
 
   return (
-    <div>
+    <div className="search-container">
       <div>
 
         <label htmlFor="ingredient">
