@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import IconProfile from '../../images/profileIcon.svg';
 import IconSearch from '../../images/searchIcon.svg';
+import { actionTextFilter } from '../../redux/slices/filterSlice';
+import Search from '../Search/index';
 
 function Header({ pageTittle, buttonSearch }) {
   const [inputSearch, setInputSearch] = useState(false);
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  const handleInput = ({ target: { value } }) => {
+    dispatch(actionTextFilter(value));
+  };
 
   return (
     <header>
@@ -19,16 +27,19 @@ function Header({ pageTittle, buttonSearch }) {
           <img src={ IconSearch } alt="Icone de busca" data-testid="search-top-btn" />
         </button>
       )}
-      <div>
-        {inputSearch && (
+      {inputSearch && (
+        <div>
           <input
             type="text"
             name="inputSearch"
             placeholder="Pesquisar"
             data-testid="search-input"
+            onChange={ (e) => handleInput(e) }
           />
-        )}
-      </div>
+
+          <Search />
+        </div>
+      )}
     </header>
   );
 }

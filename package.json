@@ -6,6 +6,7 @@
     "node": "16"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.2",
     "@sheerun/mutationobserver-shim": "^0.3.3",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -26,7 +27,6 @@
     "react-scripts": "5.0.0",
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.4.1",
     "websocket-extensions": ">=0.1.4"
   },
   "scripts": {
