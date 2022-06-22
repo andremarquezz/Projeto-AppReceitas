@@ -1,32 +1,33 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import apiFilter from '../../services/apiFilter';
+import { actionFilteredData } from '../../redux/slices/filterSlice';
 
 export default function Search() {
-  const [localFilter, setLocalFilter] = useState({ type: 'ingredient', search: '' });
+  const [localFilterType, setLocalFilterType] = useState('ingredient');
 
-  // ====> stados a serem mudado de lugar <====
-  const [temporaryFilter, setTemporaryFilter] = useState([]);
-  const [tempFoodOrDrink] = useState('meal');
+  const dispatch = useDispatch();
+  const filtersData = useSelector((state) => state.filters);
+  console.log('filtersData', filtersData);
 
   const handleFilter = async () => {
-    const { type, search } = localFilter;
-    if (type === 'letter' && search.length > 1) {
+    const { textFilter, mealOrDrink } = filtersData;
+    if (localFilterType === 'letter' && textFilter.length > 1) {
       return global.alert('Your search must have only 1 (one) character');
     }
-    console.log('data', temporaryFilter);
 
-    const data = await apiFilter(tempFoodOrDrink, localFilter);
-    setTemporaryFilter(data);
+    const data = await apiFilter(mealOrDrink, localFilterType, textFilter);
+    dispatch(actionFilteredData(data));
   };
 
   const handleRadio = ({ target: { value } }) => {
-    setLocalFilter({ ...localFilter, type: value });
-    console.log('radio', localFilter);
+    setLocalFilterType(value);
+    console.log('radio', localFilterType);
   };
 
   return (
-    <div>
-      <div>
+    <div className="search-container">
+      <div className="search-contente">
 
         <label htmlFor="ingredient">
           Ingredient

@@ -1,8 +1,10 @@
-import { createStore, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import thunk from 'redux-thunk';
-import reducer from '../reducers';
+import { configureStore } from '@reduxjs/toolkit';
+import filters from '../slices/filterSlice';
 
-const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
+const store = configureStore({
+  reducer: {
+    filters,
+  },
+});
 
 export default store;
