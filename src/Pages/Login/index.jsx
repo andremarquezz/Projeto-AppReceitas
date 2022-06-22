@@ -19,7 +19,7 @@ function Login() {
     return hasErrors;
   };
 
-  const handleLocalStorage = () => {
+  const handleLocalStorage = async () => {
     saveLocalStorage('mealsToken', 1);
     saveLocalStorage('cocktailsToken', 1);
     saveLocalStorage('user', { email });

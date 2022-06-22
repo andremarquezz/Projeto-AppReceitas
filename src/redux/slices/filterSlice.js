@@ -23,6 +23,4 @@ export const slice = createSlice({
 
 export const { actionTextFilter, actionFilteredData } = slice.actions;
 
-// export const filteredData = (state) => state.filteredData;
-
 export default slice.reducer;
