@@ -1,6 +1,6 @@
 const fetchData = (url) => fetch(url).then((d) => d.json());
 
-const mealFilter = ({ type, search }) => {
+const mealFilter = (type, search) => {
   switch (type) {
   case 'ingredient':
     return (fetchData(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${search}`));
@@ -13,7 +13,7 @@ const mealFilter = ({ type, search }) => {
   }
 };
 
-const drinkFilter = ({ type, search }) => {
+const drinkFilter = (type, search) => {
   switch (type) {
   case 'ingredient':
     return (fetchData(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${search}`));
@@ -26,12 +26,12 @@ const drinkFilter = ({ type, search }) => {
   }
 };
 
-export default function apiFilter(filter, data) {
+export default function apiFilter(filter, type, search) {
   switch (filter) {
   case 'meal':
-    return mealFilter(data);
+    return mealFilter(type, search);
   case 'drink':
-    return drinkFilter(data);
+    return drinkFilter(type, search);
   default:
     return [];
   }
