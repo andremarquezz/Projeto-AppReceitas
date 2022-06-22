@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import apiFilter from '../../services/apiFilter';
+import { actionFilteredData } from '../../redux/slices/filterSlice';
 
 import './index.css';
 
 function ListRecipies() {
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const dispatch = useDispatch();
+  const data = useSelector(({ filters: { filteredData } }) => filteredData.meals);
+
   useEffect(() => {
-    if (data.length !== 0) {
+    if (data?.length !== 0) {
       setLoading(false);
     }
 
@@ -16,13 +22,14 @@ function ListRecipies() {
 
   useEffect(() => {
     const fetchApi = async () => {
+      const apiData = await apiFilter('meal', 'name', '');
+      dispatch(actionFilteredData(apiData));
       const response = await fetch(
         ('https://www.themealdb.com/api/json/v1/1/search.php?s='),
       );
       const responseJson = await response.json();
       return setData(responseJson.meals);
     };
-
     fetchApi();
   }, []);
 
@@ -41,7 +48,7 @@ function ListRecipies() {
           <button type="button" className="btn-filter">Dessert</button>
         </div>
         <ul className="foods-list">
-          {data.map((item, index) => (
+          {data?.map((item, index) => (
             <li key={ index } className="foods-list-item">
               <img
                 src={ item.strMealThumb }
