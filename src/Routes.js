@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Login from './Pages/Login';
-import DrinksMainScreen from './Pages/DrinksMainScreen';
+import DrinksMainScreen from './Pages/MainScreenDrinks';
 import FoodsMainScreen from './Pages/MainScreenFoods';
 import FoodsScreenDetails from './Pages/FoodsScreenDetails';
 import FoodsScreenExplore from './Pages/FoodsScreenExplore';

@@ -1,8 +1,10 @@
 .main-foods-container {
   width: 100%;
+  z-index: 1;
 }
 
 .main-foods-content {
+  margin-bottom: 50px;
   padding: 20px;
 }
 
@@ -32,7 +34,7 @@
   border-radius: 6px;
   display: flex;
   flex-direction: column;
-  height: 180px;
+  height: 265px;
   width: 100%;
 }
 
@@ -43,5 +45,19 @@
 }
 
 .foods-list-item strong {
-  padding: 15px 20px;
+  padding: 15px 10px;
+}
+
+.foods-info {
+  display: flex;
+  font-size: 13px;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.coutry {
+  background: #8257e5;
+  border-radius: 4px;
+  color: white;
+  padding: 2px 5px;
 }

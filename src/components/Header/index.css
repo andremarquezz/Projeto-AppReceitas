@@ -1,4 +1,18 @@
-* {
-  margin: 0;
-  padding: 0;
+.header-container {
+  align-items: center;
+  background: #ffdada;
+  display: flex;
+  height: 55px;
+  justify-content: space-between;
+  padding: 0 20px;
+  width: 100%;
+}
+
+.header-container button {
+  background: none;
+  border: none;
+}
+
+.header-container h3 {
+  color: #a5147d;
 }

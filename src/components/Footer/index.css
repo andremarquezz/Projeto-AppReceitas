@@ -1,0 +1,25 @@
+.footer-container {
+  align-items: center;
+  background: #ebebeb;
+  border-top: 2px solid rgb(197, 191, 191);
+  bottom: 0;
+  display: flex;
+  height: 60px;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+}
+
+.footer-content {
+  display: flex;
+  gap: 65px;
+}
+
+.footer-content button {
+  background: none;
+  border: none;
+}
+
+.footer-content button img {
+  width: 30px;
+}

@@ -28,7 +28,6 @@ export default function Search() {
   return (
     <div className="search-container">
       <div className="search-contente">
-
         <label htmlFor="ingredient">
           Ingredient
           <input
