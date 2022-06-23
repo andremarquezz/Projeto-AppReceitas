@@ -22,19 +22,20 @@ function CardMealsOrDrinks() {
   }, [dispatch, mealOrDrink, radioFilter, textFilter]);
 
   const { location: { pathname } } = useHistory();
+  const URLName = pathname.split('/')[1];
 
   useEffect(() => {
-    if (pathname === '/foods') {
+    if (URLName === 'foods') {
       dispatch(actionMealOrDrink('meal'));
     }
-    if (pathname === '/drinks') {
+    if (URLName === 'drinks') {
       dispatch(actionMealOrDrink('drink'));
     }
-  }, [dispatch, pathname]);
+  }, [dispatch, URLName]);
 
   return (
     <div>
-      {pathname === '/foods'
+      {URLName === 'foods'
         ? data.meals?.slice(0, MAX_LENGTH).map((item, index) => (
           <li key={ index } className="foods-list-item">
             <img src={ item.strMealThumb } alt="FoodsImage" />
