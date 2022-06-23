@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import apiFilter from '../../services/apiFilter';
-import { actionFilteredData } from '../../redux/slices/filterSlice';
+import { actionFilteredData, actionRadioFilter } from '../../redux/slices/filterSlice';
 
 export default function Search() {
-  const [localFilterType, setLocalFilterType] = useState('ingredient');
-
   const dispatch = useDispatch();
   const filtersData = useSelector((state) => state.filters);
-  console.log('filtersData', filtersData);
 
   const handleFilter = async () => {
     const { textFilter, mealOrDrink } = filtersData;
@@ -21,13 +18,12 @@ export default function Search() {
   };
 
   const handleRadio = ({ target: { value } }) => {
-    setLocalFilterType(value);
-    console.log('radio', localFilterType);
+    dispatch(actionRadioFilter(value));
   };
 
   return (
     <div className="search-container">
-      <div className="search-contente">
+      <div className="search-content">
         <label htmlFor="ingredient">
           Ingredient
           <input
@@ -72,7 +68,6 @@ export default function Search() {
         >
           Search
         </button>
-
       </div>
     </div>
   );

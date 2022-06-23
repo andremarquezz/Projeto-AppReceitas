@@ -4,7 +4,7 @@ import Header from '../../components/Header';
 function FoodsScreenExplore() {
   return (
     <div>
-      <Header pageTittle="Explore Foods" />
+      <Header />
     </div>
   );
 }

@@ -6,10 +6,11 @@ import IconProfile from '../../images/profileIcon.svg';
 import IconSearch from '../../images/searchIcon.svg';
 import { actionTextFilter } from '../../redux/slices/filterSlice';
 import Search from '../Search/index';
+import verifyTittle from '../../services/verifyTittle';
 
 import './index.css';
 
-function Header({ pageTittle, buttonSearch }) {
+function Header({ buttonSearch }) {
   const [inputSearch, setInputSearch] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -18,20 +19,23 @@ function Header({ pageTittle, buttonSearch }) {
     dispatch(actionTextFilter(value));
   };
 
+  const {
+    location: { pathname },
+  } = history;
+
   return (
     <header className="header-container">
       <div className="header-container">
         <button type="button" onClick={ () => history.push('/profile') }>
           <img src={ IconProfile } alt="Icone do Perfil" data-testid="profile-top-btn" />
         </button>
-        <h3 data-testid="page-title">{pageTittle}</h3>
+        <h3 data-testid="page-title">{verifyTittle(pathname)}</h3>
 
         {buttonSearch && (
           <button type="button" onClick={ () => setInputSearch(!inputSearch) }>
             <img src={ IconSearch } alt="Icone de busca" data-testid="search-top-btn" />
           </button>
         )}
-
         {inputSearch && (
           <>
             <input
@@ -54,7 +58,6 @@ Header.defaultProps = {
 };
 
 Header.propTypes = {
-  pageTittle: PropTypes.string.isRequired,
   buttonSearch: PropTypes.bool,
 };
 

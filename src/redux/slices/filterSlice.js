@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   textFilter: '',
   mealOrDrink: 'meal',
   filteredData: [],
+  radioFilter: 'name',
 };
 
 const reducers = {
@@ -13,6 +14,12 @@ const reducers = {
   actionTextFilter: (state, { payload }) => {
     state.textFilter = payload;
   },
+  actionMealOrDrink: (state, { payload }) => {
+    state.mealOrDrink = payload;
+  },
+  actionRadioFilter: (state, { payload }) => {
+    state.radioFilter = payload;
+  },
 };
 
 export const slice = createSlice({
@@ -21,6 +28,7 @@ export const slice = createSlice({
   reducers,
 });
 
-export const { actionTextFilter, actionFilteredData } = slice.actions;
+export const { actionTextFilter, actionFilteredData, actionMealOrDrink, actionRadioFilter,
+} = slice.actions;
 
 export default slice.reducer;

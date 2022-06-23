@@ -1,8 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Login from './Pages/Login';
-import DrinksMainScreen from './Pages/MainScreenDrinks';
-import FoodsMainScreen from './Pages/MainScreenFoods';
+import ScreenMain from './Pages/ScreenMain';
 import FoodsScreenDetails from './Pages/FoodsScreenDetails';
 import FoodsScreenExplore from './Pages/FoodsScreenExplore';
 import DrinksScreenDetails from './Pages/DrinksScreenDetails';
@@ -25,13 +24,13 @@ function Routes() {
       <Route exact path="/explore/foods" component={ FoodsScreenExplore } />
       <Route exact path="/foods/:id/in-progress" component={ ScreenFoodProgress } />
       <Route exact path="/foods/:id" component={ FoodsScreenDetails } />
-      <Route exact path="/foods" component={ FoodsMainScreen } />
+      <Route exact path="/foods" component={ ScreenMain } />
 
       <Route exact path="/explore/drinks/ingredients" component={ DrinksIngredients } />
       <Route exact path="/explore/drinks" component={ DrinksScreenExplore } />
       <Route exact path="/drinks/:id/in-progress" component={ DrinksScreenProgress } />
       <Route exact path="/drinks/:id" component={ DrinksScreenDetails } />
-      <Route exact path="/drinks" component={ DrinksMainScreen } />
+      <Route exact path="/drinks" component={ ScreenMain } />
 
       <Route exact path="/explore" component={ ScreenExploreMain } />
       <Route exact path="/profile" component={ ScreenProfile } />
