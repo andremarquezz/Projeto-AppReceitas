@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import apiFilter from '../../services/apiFilter';
 import { actionFilteredData, actionRadioFilter } from '../../redux/slices/filterSlice';
@@ -6,19 +6,17 @@ import { actionFilteredData, actionRadioFilter } from '../../redux/slices/filter
 export default function Search() {
   const dispatch = useDispatch();
   const filtersData = useSelector((state) => state.filters);
+  const [valueRadio, setValueRadio] = useState('');
 
   const handleFilter = async () => {
     const { textFilter, mealOrDrink } = filtersData;
-    if (localFilterType === 'letter' && textFilter.length > 1) {
+    if (valueRadio === 'letter' && textFilter.length > 1) {
       return global.alert('Your search must have only 1 (one) character');
     }
+    dispatch(actionRadioFilter(valueRadio));
 
-    const data = await apiFilter(mealOrDrink, localFilterType, textFilter);
+    const data = await apiFilter(mealOrDrink, valueRadio, textFilter);
     dispatch(actionFilteredData(data));
-  };
-
-  const handleRadio = ({ target: { value } }) => {
-    dispatch(actionRadioFilter(value));
   };
 
   return (
@@ -33,7 +31,7 @@ export default function Search() {
             name="filter-type"
             data-testid="ingredient-search-radio"
             defaultChecked
-            onClick={ (e) => handleRadio(e) }
+            onClick={ ({ target }) => setValueRadio(target.value) }
           />
         </label>
 
@@ -45,7 +43,7 @@ export default function Search() {
             value="name"
             name="filter-type"
             data-testid="name-search-radio"
-            onClick={ (e) => handleRadio(e) }
+            onClick={ ({ target }) => setValueRadio(target.value) }
           />
         </label>
 
@@ -57,7 +55,7 @@ export default function Search() {
             value="letter"
             name="filter-type"
             data-testid="first-letter-search-radio"
-            onClick={ (e) => handleRadio(e) }
+            onClick={ ({ target }) => setValueRadio(target.value) }
           />
         </label>
 

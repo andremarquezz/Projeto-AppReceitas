@@ -42,7 +42,7 @@ function Header({ buttonSearch }) {
             </button>
           )}
         </div>
-        {!inputSearch && (
+        {inputSearch && (
           <div className="search">
             <input
               type="text"
