@@ -57,8 +57,16 @@ function CardMealsOrDrinks() {
     <ul className="card-list">
       {URLName === 'foods'
         ? data.meals?.slice(0, MAX_LENGTH).map((item, index) => (
-          <li key={ index } className="card-list-item">
-            <img src={ item.strMealThumb } alt="FoodsImage" />
+          <li
+            key={ index }
+            className="card-list-item"
+            data-testid={ `${index}-recipe-card` }
+          >
+            <img
+              src={ item.strMealThumb }
+              alt="FoodsImage"
+              // data-testid={`${index}-card-img`}
+            />
             <strong>{item.strMeal.substr(0, MAX_LENGTH_CATEGORY)}</strong>
             <div className="card-item-info">
               <span>{item.strCategory.substr(0, MAX_LENGTH_CATEGORY)}</span>
@@ -67,8 +75,16 @@ function CardMealsOrDrinks() {
           </li>
         ))
         : data.drinks?.slice(0, MAX_LENGTH).map((item, index) => (
-          <li key={ index } className="card-list-item">
-            <img src={ item.strDrinkThumb } alt="FoodsImage" />
+          <li
+            key={ index }
+            className="card-list-item"
+            // data-testid={`${index}-recipe-card`}
+          >
+            <img
+              src={ item.strDrinkThumb }
+              alt="FoodsImage"
+              // data-testid={`${index}-card-img`}
+            />
             <strong>{item.strDrink}</strong>
             <div className="card-item-info">
               <span>{item.strCategory}</span>
