@@ -56,7 +56,8 @@ function CardMealsOrDrinks() {
   return (
     <ul className="card-list">
       {URLName === 'foods'
-        ? data.meals?.slice(0, MAX_LENGTH).map((item, index) => (
+        && data.meals
+        && data.meals.slice(0, MAX_LENGTH).map((item, index) => (
           <li
             key={ index }
             className="card-list-item"
@@ -65,27 +66,34 @@ function CardMealsOrDrinks() {
             <img
               src={ item.strMealThumb }
               alt="FoodsImage"
-              // data-testid={`${index}-card-img`}
+              data-testid={ `${index}-card-img` }
             />
-            <strong>{item.strMeal.substr(0, MAX_LENGTH_CATEGORY)}</strong>
+            <strong data-testid={ `${index}-card-name` }>
+              {item.strMeal}
+            </strong>
             <div className="card-item-info">
               <span>{item.strCategory.substr(0, MAX_LENGTH_CATEGORY)}</span>
               <span className="coutry">{item.strArea}</span>
             </div>
           </li>
-        ))
-        : data.drinks?.slice(0, MAX_LENGTH).map((item, index) => (
+        )) }
+
+      {URLName === 'drinks'
+        && data.drinks
+        && data.drinks.slice(0, MAX_LENGTH).map((item, index) => (
           <li
             key={ index }
             className="card-list-item"
-            // data-testid={`${index}-recipe-card`}
+            data-testid={ `${index}-recipe-card` }
           >
             <img
               src={ item.strDrinkThumb }
               alt="FoodsImage"
-              // data-testid={`${index}-card-img`}
+              data-testid={ `${index}-card-img` }
             />
-            <strong>{item.strDrink}</strong>
+            <strong data-testid={ `${index}-card-name` }>
+              {item.strDrink}
+            </strong>
             <div className="card-item-info">
               <span>{item.strCategory}</span>
             </div>
