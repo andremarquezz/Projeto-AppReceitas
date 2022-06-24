@@ -2,23 +2,31 @@
   align-items: center;
   background: #ffdada;
   display: flex;
-  height: 55px;
+  height: 205px;
   justify-content: space-between;
-  padding: 0 20px;
   width: 100%;
 }
 
-.header-container button {
-  background: none;
-  border: none;
-}
-
-.header-container h3 {
-  color: #a5147d;
-}
-
-/*
-.search-container {
+.header-content {
   display: flex;
   flex-direction: column;
-} */
+  gap: 25px;
+  padding: 20px;
+  width: 100%;
+}
+
+.header-nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-search {
+  height: 40px;
+  width: 100%;
+}
