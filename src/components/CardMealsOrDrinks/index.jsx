@@ -18,13 +18,17 @@ function CardMealsOrDrinks() {
   useEffect(() => {
     const fetchApi = async () => {
       const apiData = await apiFilter(mealOrDrink, radioFilter, textFilter);
+      console.log(apiData);
       dispatch(actionFilteredData(apiData));
     };
 
     fetchApi();
   }, [dispatch, mealOrDrink, radioFilter, textFilter]);
 
-  const { location: { pathname } } = useHistory();
+  const {
+    location: { pathname },
+    push,
+  } = useHistory();
   const URLName = pathname.split('/')[1];
 
   useEffect(() => {
@@ -35,6 +39,19 @@ function CardMealsOrDrinks() {
       dispatch(actionMealOrDrink('drink'));
     }
   }, [dispatch, URLName]);
+
+  useEffect(() => {
+    if (data.drinks || data.meals) {
+      const position = Object.keys(data)[0];
+      const id = Object.values(data[position][0])[0];
+      if (data[position].length === 1) {
+        return push(`/${URLName}/${id}`);
+      }
+    }
+    if (Array.isArray(data)) {
+      global.alert('Sorry, we haven\'t found any recipes for these filters.');
+    }
+  }, [data, push, URLName, dispatch]);
 
   return (
     <ul className="card-list">

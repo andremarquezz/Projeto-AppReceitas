@@ -3,13 +3,17 @@ import { createSlice } from '@reduxjs/toolkit';
 const INITIAL_STATE = {
   textFilter: '',
   mealOrDrink: 'meal',
-  filteredData: [],
+  filteredData: '',
   radioFilter: 'name',
 };
 
 const reducers = {
   actionFilteredData: (state, { payload }) => {
     state.filteredData = payload;
+    console.log({ payload });
+    if (!payload.drinks && !payload.meals) {
+      state.filteredData = [];
+    }
   },
   actionTextFilter: (state, { payload }) => {
     state.textFilter = payload;

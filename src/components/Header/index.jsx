@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import IconProfile from '../../images/profileIcon.svg';
 import IconSearch from '../../images/searchIcon.svg';
-import { actionTextFilter } from '../../redux/slices/filterSlice';
 import Search from '../Search/index';
 import verifyTittle from '../../services/verifyTittle';
 
@@ -12,11 +10,11 @@ import './index.css';
 
 function Header({ buttonSearch }) {
   const [inputSearch, setInputSearch] = useState(false);
+  const [inputFilter, setInputFilter] = useState('');
   const history = useHistory();
-  const dispatch = useDispatch();
 
   const handleInput = ({ target: { value } }) => {
-    dispatch(actionTextFilter(value));
+    setInputFilter(value);
   };
 
   const {
@@ -66,7 +64,7 @@ function Header({ buttonSearch }) {
               data-testid="search-input"
               onChange={ (e) => handleInput(e) }
             />
-            <Search />
+            <Search inputText={ inputFilter } />
           </div>
         )}
       </div>
