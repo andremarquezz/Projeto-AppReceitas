@@ -3,14 +3,14 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import List from '../../components/ListRecipies';
 
-function MainScreenFoods() {
+function MainScreen() {
   return (
     <div className="foods-container">
-      <Header pageTittle="Foods" buttonSearch />
+      <Header buttonSearch />
       <List />
       <Footer />
     </div>
   );
 }
 
-export default MainScreenFoods;
+export default MainScreen;

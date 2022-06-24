@@ -4,7 +4,7 @@ import Header from '../../components/Header';
 function ScreenProfile() {
   return (
     <div>
-      <Header pageTittle="Profile" />
+      <Header />
     </div>
   );
 }
