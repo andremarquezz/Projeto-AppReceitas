@@ -25,18 +25,32 @@ function Header({ buttonSearch }) {
     <header className="header-container">
       <div className="header-content">
         <div className="header-nav">
-          <button type="button" onClick={ () => history.push('/profile') }>
+          <button
+            type="button"
+            onClick={ () => history.push('/profile') }
+            className="button-user"
+          >
             <img
               src={ IconProfile }
               alt="Icone do Perfil"
+              className="icon-user-avatar"
               data-testid="profile-top-btn"
             />
           </button>
           <h3 data-testid="page-title">{verifyTittle(pathname)}</h3>
 
           {buttonSearch && (
-            <button type="button" onClick={ () => setInputSearch(!inputSearch) }>
-              <img src={ IconSearch } alt="Icone de busca" data-testid="search-top-btn" />
+            <button
+              type="button"
+              onClick={ () => setInputSearch(!inputSearch) }
+              className="button-search"
+            >
+              <img
+                src={ IconSearch }
+                alt="Icone de busca"
+                className="icon-search"
+                data-testid="search-top-btn"
+              />
             </button>
           )}
         </div>

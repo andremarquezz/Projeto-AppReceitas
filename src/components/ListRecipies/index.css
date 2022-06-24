@@ -15,49 +15,10 @@
 }
 
 .btn-filter {
-  background: rgb(226, 211, 211);
+  color: white;
+  font-weight: bold;
+  background: #9871F5;
   border: none;
   border-radius: 4px;
   height: 40px;
-}
-
-.foods-list {
-  display: grid;
-  gap: 15px;
-  grid-template-columns: repeat(2, 1fr);
-  list-style: none;
-  margin-top: 55px;
-}
-
-.foods-list-item {
-  background: rgb(245, 243, 243);
-  border-radius: 6px;
-  display: flex;
-  flex-direction: column;
-  height: 265px;
-  width: 100%;
-}
-
-.foods-list-item img {
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-  width: 100%;
-}
-
-.foods-list-item strong {
-  padding: 15px 10px;
-}
-
-.foods-info {
-  display: flex;
-  font-size: 13px;
-  justify-content: space-between;
-  padding: 0 10px;
-}
-
-.coutry {
-  background: #8257e5;
-  border-radius: 4px;
-  color: white;
-  padding: 2px 5px;
 }

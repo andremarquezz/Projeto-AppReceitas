@@ -57,13 +57,26 @@ export default function Search({ inputText }) {
               onClick={ ({ target }) => setValueRadio(target.value) }
             />
           </label>
-
-          <button
-            type="submit"
-            data-testid="exec-search-btn"
-          >
-            Search
-          </button>
+        <label htmlFor="letter">
+          First letter
+          <input
+            type="radio"
+            id="letter"
+            value="letter"
+            name="filter-type"
+            data-testid="first-letter-search-radio"
+            onClick={ ({ target }) => setValueRadio(target.value) }
+          />
+        </label>
+      </div>
+      <div className="search-btn">
+        <button
+          className="btn-search"
+          type="submit"
+          data-testid="exec-search-btn"
+        >
+          Search
+        </button>
         </form>
 
       </div>

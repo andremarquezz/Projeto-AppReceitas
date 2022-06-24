@@ -26,9 +26,7 @@ function ListRecipies() {
             Dessert
           </button>
         </div>
-        <ul className="foods-list">
-          <CardMealsOrDrinks />
-        </ul>
+        <CardMealsOrDrinks />
       </div>
     </div>
   );
