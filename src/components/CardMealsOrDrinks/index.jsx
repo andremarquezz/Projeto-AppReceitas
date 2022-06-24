@@ -15,13 +15,14 @@ function CardMealsOrDrinks() {
   useEffect(() => {
     const fetchApi = async () => {
       const apiData = await apiFilter(mealOrDrink, radioFilter, textFilter);
+      console.log(apiData);
       dispatch(actionFilteredData(apiData));
     };
 
     fetchApi();
   }, [dispatch, mealOrDrink, radioFilter, textFilter]);
 
-  const { location: { pathname } } = useHistory();
+  const { location: { pathname }, push } = useHistory();
   const URLName = pathname.split('/')[1];
 
   useEffect(() => {
@@ -33,12 +34,31 @@ function CardMealsOrDrinks() {
     }
   }, [dispatch, URLName]);
 
+  useEffect(() => {
+    if (data.drinks || data.meals) {
+      const position = Object.keys(data)[0];
+      const id = Object.values(data[position][0])[0];
+      if (data[position].length === 1) { return push(`/${URLName}/${id}`); }
+    }
+    if (Array.isArray(data)) {
+      global.alert('Sorry, we haven\'t found any recipes for these filters.');
+    }
+  }, [data, push, URLName, dispatch]);
+
   return (
     <div>
       {URLName === 'foods'
         ? data.meals?.slice(0, MAX_LENGTH).map((item, index) => (
-          <li key={ index } className="foods-list-item">
-            <img src={ item.strMealThumb } alt="FoodsImage" />
+          <li
+            key={ index }
+            className="foods-list-item"
+            // data-testid={ `${index}-recipe-card` }
+          >
+            <img
+              src={ item.strMealThumb }
+              alt="FoodsImage"
+              // data-testid={ `${index}-card-img` }
+            />
             <strong>{item.strMeal}</strong>
             <div className="foods-info">
               <span>{item.strCategory}</span>
@@ -47,8 +67,16 @@ function CardMealsOrDrinks() {
           </li>
         ))
         : data.drinks?.slice(0, MAX_LENGTH).map((item, index) => (
-          <li key={ index } className="foods-list-item">
-            <img src={ item.strDrinkThumb } alt="FoodsImage" />
+          <li
+            key={ index }
+            className="foods-list-item"
+            // data-testid={ `${index}-recipe-card` }
+          >
+            <img
+              src={ item.strDrinkThumb }
+              alt="FoodsImage"
+              // data-testid={ `${index}-card-img` }
+            />
             <strong>{item.strDrink}</strong>
             <div className="foods-info">
               <span>{item.strCategory}</span>
