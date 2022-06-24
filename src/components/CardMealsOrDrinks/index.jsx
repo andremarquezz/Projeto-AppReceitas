@@ -57,7 +57,7 @@ function CardMealsOrDrinks() {
             <img
               src={ item.strMealThumb }
               alt="FoodsImage"
-              // data-testid={ `${index}-card-img` }
+              // data-testid={`${index}-card-img`}
             />
             <strong>{item.strMeal}</strong>
             <div className="foods-info">
