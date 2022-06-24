@@ -22,7 +22,7 @@ export default function Footer() {
         </button>
         <button
           type="button"
-          onClick={ () => push('/foods') }
+          onClick={ () => push('/explore') }
         >
           <img data-testid="explore-bottom-btn" src={ explore } alt="drinksIcon" />
         </button>

@@ -1,4 +1,33 @@
 .search-container {
-  display: flex;
   width: 100%;
+}
+
+.search-content {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  width: 100%;
+}
+
+.search-content label {
+  align-items: center;
+  display: flex;
+  font-size: 16px;
+  font-weight: 600;
+  gap: 8px;
+}
+
+.search-btn {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 25px;
+  width: 100%;
+}
+
+.btn-search {
+  background: rgb(42, 231, 152);
+  border: 0;
+  border-radius: 4px;
+  padding: 10px 35px;
 }

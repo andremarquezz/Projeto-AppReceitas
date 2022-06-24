@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import apiFilter from '../../services/apiFilter';
 import { actionFilteredData, actionRadioFilter } from '../../redux/slices/filterSlice';
 
+import './index.css';
+
 export default function Search() {
   const dispatch = useDispatch();
   const filtersData = useSelector((state) => state.filters);
@@ -58,8 +60,10 @@ export default function Search() {
             onClick={ ({ target }) => setValueRadio(target.value) }
           />
         </label>
-
+      </div>
+      <div className="search-btn">
         <button
+          className="btn-search"
           type="button"
           data-testid="exec-search-btn"
           onClick={ () => handleFilter() }
