@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import apiFilter from '../../services/apiFilter';
 import { actionFilteredData, actionMealOrDrink } from '../../redux/slices/filterSlice';
-
 import './index.css';
 
 const MAX_LENGTH = 12;
@@ -56,20 +55,40 @@ function CardMealsOrDrinks() {
   return (
     <ul className="card-list">
       {URLName === 'foods'
-        ? data.meals?.slice(0, MAX_LENGTH).map((item, index) => (
-          <li key={ index } className="card-list-item">
-            <img src={ item.strMealThumb } alt="FoodsImage" />
-            <strong>{item.strMeal.substr(0, MAX_LENGTH_CATEGORY)}</strong>
+        && data.meals
+        && data.meals.slice(0, MAX_LENGTH).map((item, index) => (
+          <li
+            key={ index }
+            className="card-list-item"
+            data-testid={ `${index}-recipe-card` }
+          >
+            <img
+              src={ item.strMealThumb }
+              alt="FoodsImage"
+              data-testid={ `${index}-card-img` }
+            />
+            <strong data-testid={ `${index}-card-name` }>{item.strMeal}</strong>
             <div className="card-item-info">
               <span>{item.strCategory.substr(0, MAX_LENGTH_CATEGORY)}</span>
               <span className="coutry">{item.strArea}</span>
             </div>
           </li>
-        ))
-        : data.drinks?.slice(0, MAX_LENGTH).map((item, index) => (
-          <li key={ index } className="card-list-item">
-            <img src={ item.strDrinkThumb } alt="FoodsImage" />
-            <strong>{item.strDrink}</strong>
+        ))}
+
+      {URLName === 'drinks'
+        && data.drinks
+        && data.drinks.slice(0, MAX_LENGTH).map((item, index) => (
+          <li
+            key={ index }
+            className="card-list-item"
+            data-testid={ `${index}-recipe-card` }
+          >
+            <img
+              src={ item.strDrinkThumb }
+              alt="FoodsImage"
+              data-testid={ `${index}-card-img` }
+            />
+            <strong data-testid={ `${index}-card-name` }>{item.strDrink}</strong>
             <div className="card-item-info">
               <span>{item.strCategory}</span>
             </div>
