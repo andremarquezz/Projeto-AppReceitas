@@ -5,7 +5,6 @@ import IconProfile from '../../images/profileIcon.svg';
 import IconSearch from '../../images/searchIcon.svg';
 import Search from '../Search/index';
 import verifyTittle from '../../services/verifyTittle';
-
 import './index.css';
 
 function Header({ buttonSearch }) {
@@ -19,6 +18,7 @@ function Header({ buttonSearch }) {
 
   const {
     location: { pathname },
+    push,
   } = history;
 
   return (
@@ -27,7 +27,7 @@ function Header({ buttonSearch }) {
         <div className="header-nav">
           <button
             type="button"
-            onClick={ () => history.push('/profile') }
+            onClick={ () => push('/profile') }
             className="button-user"
           >
             <img

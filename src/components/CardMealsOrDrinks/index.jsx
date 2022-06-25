@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import apiFilter from '../../services/apiFilter';
 import { actionFilteredData, actionMealOrDrink } from '../../redux/slices/filterSlice';
-
 import './index.css';
 
 const MAX_LENGTH = 12;
@@ -68,15 +67,13 @@ function CardMealsOrDrinks() {
               alt="FoodsImage"
               data-testid={ `${index}-card-img` }
             />
-            <strong data-testid={ `${index}-card-name` }>
-              {item.strMeal}
-            </strong>
+            <strong data-testid={ `${index}-card-name` }>{item.strMeal}</strong>
             <div className="card-item-info">
               <span>{item.strCategory.substr(0, MAX_LENGTH_CATEGORY)}</span>
               <span className="coutry">{item.strArea}</span>
             </div>
           </li>
-        )) }
+        ))}
 
       {URLName === 'drinks'
         && data.drinks
@@ -91,9 +88,7 @@ function CardMealsOrDrinks() {
               alt="FoodsImage"
               data-testid={ `${index}-card-img` }
             />
-            <strong data-testid={ `${index}-card-name` }>
-              {item.strDrink}
-            </strong>
+            <strong data-testid={ `${index}-card-name` }>{item.strDrink}</strong>
             <div className="card-item-info">
               <span>{item.strCategory}</span>
             </div>
