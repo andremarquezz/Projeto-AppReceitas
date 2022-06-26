@@ -3,7 +3,6 @@
   gap: 15px;
   grid-template-columns: repeat(2, 1fr);
   list-style: none;
-  margin-top: 55px;
 }
 
 .card-list-item {
@@ -24,8 +23,8 @@
 }
 
 .card-list-item strong {
-  padding: 15px 10px;
   color: #32264d;
+  padding: 15px 10px;
 }
 
 .card-item-info {

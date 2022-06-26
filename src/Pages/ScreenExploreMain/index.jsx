@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 
@@ -8,18 +9,30 @@ import drinkIcon from '../../images/explore-drink-icon.svg';
 import foodIcon from '../../images/explore-food-icon.svg';
 
 function MainScreenExplore() {
+  const { push } = useHistory();
+
   return (
     <div className="main-explorer-container">
       <Header />
       <div className="main-explorer-content">
-        <div className="card-explorer-food">
-          <strong>Explore Foods</strong>
+        <button
+          type="button"
+          onClick={ () => push('/explore/foods') }
+          className="card-explorer-food"
+          data-testid="explore-foods"
+        >
+          Explore Foods
           <img src={ foodIcon } alt="IconDrink" />
-        </div>
-        <div className="card-explorer-drink">
-          <strong>Explore Drink</strong>
+        </button>
+        <button
+          type="button"
+          className="card-explorer-drink"
+          onClick={ () => push('/explore/drinks') }
+          data-testid="explore-drinks"
+        >
+          Explore Drinks
           <img src={ drinkIcon } alt="IconFood" />
-        </div>
+        </button>
       </div>
       <Footer />
     </div>

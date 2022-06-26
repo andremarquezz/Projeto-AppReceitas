@@ -29,6 +29,7 @@ function CardMealsOrDrinks() {
     location: { pathname },
     push,
   } = useHistory();
+
   const URLName = pathname.split('/')[1];
 
   useEffect(() => {
@@ -57,7 +58,11 @@ function CardMealsOrDrinks() {
     <ul className="card-list">
       {URLName === 'foods'
         ? data.meals?.slice(0, MAX_LENGTH).map((item, index) => (
-          <li key={ index } className="card-list-item">
+          <li
+            key={ index }
+            className="card-list-item"
+            data-testid={`${index}-recipe-card`}
+          >
             <img src={ item.strMealThumb } alt="FoodsImage" />
             <strong>{item.strMeal.substr(0, MAX_LENGTH_CATEGORY)}</strong>
             <div className="card-item-info">
@@ -67,7 +72,11 @@ function CardMealsOrDrinks() {
           </li>
         ))
         : data.drinks?.slice(0, MAX_LENGTH).map((item, index) => (
-          <li key={ index } className="card-list-item">
+          <li 
+            key={ index }
+            className="card-list-item"
+            data-testid={ `${index}-recipe-card` }
+          >
             <img src={ item.strDrinkThumb } alt="FoodsImage" />
             <strong>{item.strDrink}</strong>
             <div className="card-item-info">

@@ -21,13 +21,15 @@ function Header({ buttonSearch }) {
     location: { pathname },
   } = history;
 
+  const { push } = useHistory();
+
   return (
     <header className="header-container">
       <div className="header-content">
         <div className="header-nav">
           <button
             type="button"
-            onClick={ () => history.push('/profile') }
+            onClick={ () => push('/profile') }
             className="button-user"
           >
             <img
