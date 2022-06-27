@@ -14,7 +14,6 @@ const mealFilter = (type, search) => {
 };
 
 const drinkFilter = (type, search) => {
-  console.log({ type });
   switch (type) {
   case 'ingredient':
     return fetchData(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${search}`);
