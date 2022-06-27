@@ -16,11 +16,17 @@ const mealFilter = (type, search) => {
 const drinkFilter = (type, search) => {
   switch (type) {
   case 'ingredient':
-    return fetchData(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${search}`);
+    return fetchData(
+      `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${search}`,
+    );
   case 'name':
-    return fetchData(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${search}`);
+    return fetchData(
+      `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${search}`,
+    );
   case 'letter':
-    return fetchData(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${search}`);
+    return fetchData(
+      `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${search}`,
+    );
   default:
     return [];
   }
@@ -29,7 +35,9 @@ const drinkFilter = (type, search) => {
 export default function apiFilter(filter, type, search) {
   switch (filter) {
   case 'meal':
-    return mealFilter(type, search);
+    return () => {
+      mealFilter(type, search);
+    };
   case 'drink':
     return drinkFilter(type, search);
   default:
