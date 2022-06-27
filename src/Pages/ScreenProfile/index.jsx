@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { getLocalStorage } from '../../services/LocalStorage';
 
@@ -8,13 +8,9 @@ import Footer from '../../components/Footer';
 import profileIcon from '../../images/profileIcon.svg';
 
 function ScreenProfile() {
-  const [userEmail, setUserEmail] = useState();
   const { push } = useHistory();
 
-  useEffect(() => {
-    const getEmail = getLocalStorage('user');
-    setUserEmail(getEmail.email);
-  }, []);
+  const getEmail = getLocalStorage('user') || [];
 
   const excludeLocalStorage = () => {
     localStorage.clear();
@@ -27,11 +23,7 @@ function ScreenProfile() {
       <div className="profile-content">
         <div className="profile-info">
           <img src={ profileIcon } alt="IconProfile" />
-          <span
-            data-testid="profile-email"
-          >
-            { userEmail }
-          </span>
+          <span data-testid="profile-email">{getEmail.email}</span>
         </div>
         <div className="profile-actions">
           <div className="profile-actions-title">
