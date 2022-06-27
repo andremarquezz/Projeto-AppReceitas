@@ -10,7 +10,11 @@ import profileIcon from '../../images/profileIcon.svg';
 function ScreenProfile() {
   const { push } = useHistory();
 
+<<<<<<< HEAD
   const getEmail = getLocalStorage('user') || [];
+=======
+  const getEmail = getLocalStorage('user') || '';
+>>>>>>> main-group-13
 
   const excludeLocalStorage = () => {
     localStorage.clear();
