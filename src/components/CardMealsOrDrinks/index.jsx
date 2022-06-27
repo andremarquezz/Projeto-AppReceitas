@@ -27,6 +27,7 @@ function CardMealsOrDrinks() {
     location: { pathname },
     push,
   } = useHistory();
+
   const URLName = pathname.split('/')[1];
 
   useEffect(() => {

@@ -1,0 +1,54 @@
+.filters-favorites {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 10px 20px;
+}
+
+.favorits-description-filter, .favorits-description-items {
+  padding: 20px;
+}
+
+.filters-favorites button {
+  background: rgb(168, 168, 211);
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: 700;
+  height: 45px;
+}
+
+.favorites-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+  padding: 10px 20px;
+}
+
+.favorites-not-found-container {
+  padding: 30px 20px;
+  width: 100%;
+}
+
+.favorites-not-found {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.726);
+  border-radius: 8px;
+  display: flex;
+  gap: 25px;
+  height: 80px;
+  justify-content: center;
+  padding: 20px;
+  width: 100%;
+}
+
+.favorites-not-found img {
+  width: 40px;
+}
+
+.favorites-not-found h3 {
+  color: rgb(145, 108, 60);
+  font-size: 16px;
+  max-width: 250px;
+}

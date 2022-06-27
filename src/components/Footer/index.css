@@ -1,7 +1,9 @@
 .footer-container {
   align-items: center;
-  background: #ebebeb;
-  border-top: 2px solid rgb(197, 191, 191);
+  background: #fcfcfc;
+  border-top: 2px solid rgb(228, 223, 223);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
   bottom: 0;
   display: flex;
   height: 60px;

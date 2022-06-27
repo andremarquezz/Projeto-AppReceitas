@@ -7,6 +7,9 @@ function ListRecipies() {
   return (
     <div className="main-foods-container">
       <div className="main-foods-content">
+        <div className="description-filters">
+          <strong>Filtros</strong>
+        </div>
         <div className="filters-button">
           <button type="button" className="btn-filter">
             All
@@ -26,6 +29,9 @@ function ListRecipies() {
           <button type="button" className="btn-filter">
             Dessert
           </button>
+        </div>
+        <div className="description-list">
+          <strong>Principais receitas</strong>
         </div>
         <CardMealsOrDrinks />
       </div>
