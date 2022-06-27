@@ -5,11 +5,16 @@ import './index.css';
 
 function RecomedeCard({ url, type, title }) {
   return (
-    <li className="card-recomeded">
+    <li className="card-recomeded" data-testid="index-recomendation-card">
       <img src={ url } alt={ title } />
       <div className="card-recomeded-info">
         <span className="recomended-type">{ type }</span>
-        <strong className="recomended-title">{ title }</strong>
+        <strong
+          className="recomended-title"
+          data-testid="index-recomendation-title"
+        >
+          { title }
+        </strong>
       </div>
     </li>
   );

@@ -13,9 +13,10 @@ function ScreenDetailsFood() {
     <div className="card-details-content">
       <div className="card-details-header">
         <img
-          src="https://www.themealdb.com/images/media/meals/tkxquw1628771028.jpg"
+          src="https://www.themealdb.com/images/media/meals/kcv6hj1598733479.jpg"
           alt="Icon"
           className="image-recipes"
+          data-testid="recipe-photo"
         />
         <button type="button">
           <img src={ leftIcon } alt="LeftIcon" />
@@ -24,28 +25,41 @@ function ScreenDetailsFood() {
 
       <div className="card-details-body">
         <div className="title-header">
-          <h1>Corba Poutine</h1>
+          <h1 data-testid="recipe-title">Corba Poutine</h1>
           <div className="icons-action">
-            <img src={ shareIcon } alt="IconShare" />
-            <img src={ haertIcon } alt="IconHaert" />
+            <img
+              src={ shareIcon }
+              alt="IconShare"
+              data-testid="share-btn"
+            />
+            <img
+              src={ haertIcon }
+              alt="IconHaert"
+              data-testid="favorite-btn"
+            />
           </div>
         </div>
-        <strong className="currency">Corba</strong>
+        <strong
+          className="currency"
+          data-testid="recipe-category"
+        >
+          Corba
+        </strong>
 
         <div className="card-details-ingredients">
           <h4>Ingredients</h4>
           <ul className="ingredients-list">
-            <li>Banana</li>
-            <li>Melão</li>
-            <li>Manga</li>
-            <li>Pera</li>
-            <li>Maçã</li>
+            <li data-testid="index-ingredient-name-and-measure">Banana</li>
+            <li data-testid="index-ingredient-name-and-measure">Melão</li>
+            <li data-testid="index-ingredient-name-and-measure">Manga</li>
+            <li data-testid="index-ingredient-name-and-measure">Pera</li>
+            <li data-testid="index-ingredient-name-and-measure">Maçã</li>
           </ul>
         </div>
 
         <div className="card-details-instructions">
           <h4>Instructions</h4>
-          <p>
+          <p data-testid="instructions">
             Pick through your lentils for any foreign debris,
             rinse them 2 or 3 times, drain, and set aside.  Fair
             warning, this will probably turn your lentils into a
@@ -61,6 +75,7 @@ function ScreenDetailsFood() {
           <h4>Video</h4>
           <div className="embed-video">
             <iframe
+              data-testid="video"
               width="100%"
               height="100%"
               src="https://www.youtube.com/embed/VVnZd8A84z4"
@@ -89,6 +104,7 @@ function ScreenDetailsFood() {
         <button
           type="button"
           className="btn-start-recipies"
+          data-testid="start-recipe-btn"
         >
           Start Recipies
         </button>

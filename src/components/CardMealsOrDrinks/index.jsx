@@ -61,7 +61,6 @@ function CardMealsOrDrinks() {
           <li
             key={ index }
             className="card-list-item"
-            data-testid={`${index}-recipe-card`}
           >
             <img src={ item.strMealThumb } alt="FoodsImage" />
             <strong>{item.strMeal.substr(0, MAX_LENGTH_CATEGORY)}</strong>
@@ -72,10 +71,9 @@ function CardMealsOrDrinks() {
           </li>
         ))
         : data.drinks?.slice(0, MAX_LENGTH).map((item, index) => (
-          <li 
+          <li
             key={ index }
             className="card-list-item"
-            data-testid={ `${index}-recipe-card` }
           >
             <img src={ item.strDrinkThumb } alt="FoodsImage" />
             <strong>{item.strDrink}</strong>
