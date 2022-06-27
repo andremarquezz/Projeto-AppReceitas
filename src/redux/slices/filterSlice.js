@@ -9,6 +9,7 @@ const INITIAL_STATE = {
 
 const reducers = {
   actionFilteredData: (state, { payload }) => {
+    if (payload === null) { return; }
     state.filteredData = payload;
     if (!payload.drinks && !payload.meals) {
       state.filteredData = [];
