@@ -1,0 +1,23 @@
+.btn-explorer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  width: 100%;
+}
+
+.btn-explorer button {
+  align-items: center;
+  background: white;
+  border: 1px solid rgb(230, 225, 225);
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 20px;
+  width: 100%;
+}
+
+.btn-explorer button img {
+  height: 60px;
+  width: 45px;
+}

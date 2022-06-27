@@ -4,7 +4,7 @@ import Header from '../../components/Header';
 
 function DrinksIngredients() {
   return (
-    <div>
+    <div className="grinks-ingredients-container">
       <Header />
       <Footer />
     </div>

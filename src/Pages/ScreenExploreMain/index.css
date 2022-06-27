@@ -8,14 +8,13 @@
 .card-explorer-food, .card-explorer-drink {
   align-items: center;
   background: white;
-  border: 1px solid rgb(214, 211, 211);
+  border: 1px solid rgb(230, 225, 225);
   border-radius: 6px;
   cursor: pointer;
   display: flex;
   height: 90px;
   justify-content: space-between;
   padding: 0 20px;
-  width: 100%;
 }
 
 .card-explorer-food img, .card-explorer-drink img {

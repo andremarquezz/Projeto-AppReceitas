@@ -1,0 +1,33 @@
+.foods-ingredients-list {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  list-style: none;
+  padding: 0 20px;
+  width: 100%;
+}
+
+.foods-ingredients-title {
+  padding: 20px;
+}
+
+.ingrediets-item {
+  background: white;
+  border: 1px solid rgb(230, 225, 225);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  height: 220px;
+  width: 100%;
+}
+
+.ingrediets-item img {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  height: 150px;
+  width: 100%;
+}
+
+.ingrediets-item strong {
+  padding: 20px 10px;
+}

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { saveLocalStorage } from '../../services/LocalStorage';
-import styles from './index.css';
+import './index.css';
+
+import loginImage from '../../images/login.svg';
 
 function Login() {
   const history = useHistory();
@@ -27,9 +29,16 @@ function Login() {
   };
 
   return (
-    <div className={ styles.loginContainer }>
-      <div className={ styles.loginContent }>
-        <form onSubmit={ handleLocalStorage }>
+    <div className="login-container">
+      <div className="login-content">
+        <div className="login-info">
+          <img src={ loginImage } alt="LoginImage" />
+          <strong> Fazendo o seu dia mais gostoso. Nunca foi tão facil cozinhar!</strong>
+        </div>
+        <form
+          onSubmit={ handleLocalStorage }
+          className="form"
+        >
           <h3>Login</h3>
           <input
             type="email"

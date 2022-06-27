@@ -1,0 +1,25 @@
+.card-recomeded {
+  background: rgb(243, 243, 243);
+  border: 1px solid #dbdbe6;
+  border-radius: 4px;
+  height: 250px;
+  width: 155px;
+}
+
+.card-recomeded img {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  height: 170px;
+  width: 100%;
+}
+
+.card-recomeded-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+}
+
+.card-recomeded-info strong {
+  font-size: 16px;
+}

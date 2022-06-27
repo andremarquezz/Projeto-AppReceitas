@@ -5,8 +5,7 @@ import ScreenMain from './Pages/ScreenMain';
 import FoodsScreenDetails from './Pages/FoodsScreenDetails';
 import FoodsScreenExplore from './Pages/FoodsScreenExplore';
 import DrinksScreenDetails from './Pages/DrinksScreenDetails';
-import ScreenFoodProgress from './Pages/FoodsScreenProgress';
-import DrinksScreenProgress from './Pages/DrinksScreenProgress';
+import ScreenInProgress from './Pages/ScreenInProgress';
 import ScreenExploreMain from './Pages/ScreenExploreMain';
 import ScreenProfile from './Pages/ScreenProfile';
 import ScreenDoneRecipes from './Pages/ScreenDoneRecipes';
@@ -22,13 +21,13 @@ function Routes() {
       <Route exact path="/explore/foods/nationalities" component={ FoodsNationalities } />
       <Route exact path="/explore/foods/ingredients" component={ FoodsIngredients } />
       <Route exact path="/explore/foods" component={ FoodsScreenExplore } />
-      <Route exact path="/foods/:id/in-progress" component={ ScreenFoodProgress } />
+      <Route exact path="/foods/:id/in-progress" component={ ScreenInProgress } />
       <Route exact path="/foods/:id" component={ FoodsScreenDetails } />
       <Route exact path="/foods" component={ ScreenMain } />
 
       <Route exact path="/explore/drinks/ingredients" component={ DrinksIngredients } />
       <Route exact path="/explore/drinks" component={ DrinksScreenExplore } />
-      <Route exact path="/drinks/:id/in-progress" component={ DrinksScreenProgress } />
+      <Route exact path="/drinks/:id/in-progress" component={ ScreenInProgress } />
       <Route exact path="/drinks/:id" component={ DrinksScreenDetails } />
       <Route exact path="/drinks" component={ ScreenMain } />
 
