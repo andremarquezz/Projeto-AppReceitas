@@ -1,7 +1,8 @@
 import React from 'react';
+import Details from '../../components/Details';
 
 function ScreenDetailsFood() {
-  return <div>ScreenDetailsFood</div>;
+  return <Details />;
 }
 
 export default ScreenDetailsFood;

@@ -17,7 +17,6 @@ function CardMealsOrDrinks() {
   useEffect(() => {
     const fetchApi = async () => {
       const apiData = await apiFilter(mealOrDrink, radioFilter, textFilter);
-      console.log(apiData);
       dispatch(actionFilteredData(apiData));
     };
 
@@ -32,10 +31,10 @@ function CardMealsOrDrinks() {
 
   useEffect(() => {
     if (URLName === 'foods') {
-      dispatch(actionMealOrDrink('meal'));
+      dispatch(actionMealOrDrink('meals'));
     }
     if (URLName === 'drinks') {
-      dispatch(actionMealOrDrink('drink'));
+      dispatch(actionMealOrDrink('drinks'));
     }
   }, [dispatch, URLName]);
 
@@ -47,7 +46,7 @@ function CardMealsOrDrinks() {
         return push(`/${URLName}/${id}`);
       }
     }
-    if (Array.isArray(data)) {
+    if (Array.isArray(data) && data.length === 0) {
       global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
   }, [data, push, URLName, dispatch]);
