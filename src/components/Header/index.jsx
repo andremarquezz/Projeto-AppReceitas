@@ -5,7 +5,6 @@ import IconProfile from '../../images/profileIcon.svg';
 import IconSearch from '../../images/searchIcon.svg';
 import Search from '../Search/index';
 import verifyTittle from '../../services/verifyTittle';
-
 import './index.css';
 
 function Header({ buttonSearch }) {
@@ -19,9 +18,8 @@ function Header({ buttonSearch }) {
 
   const {
     location: { pathname },
+    push,
   } = history;
-
-  const { push } = useHistory();
 
   return (
     <header className="header-container">
