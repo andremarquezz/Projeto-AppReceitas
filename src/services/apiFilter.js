@@ -16,11 +16,17 @@ const mealFilter = (type, search) => {
 const drinkFilter = (type, search) => {
   switch (type) {
   case 'ingredient':
-    return fetchData(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${search}`);
+    return fetchData(
+      `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${search}`,
+    );
   case 'name':
-    return fetchData(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${search}`);
+    return fetchData(
+      `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${search}`,
+    );
   case 'letter':
-    return fetchData(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${search}`);
+    return fetchData(
+      `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${search}`,
+    );
   default:
     return '';
   }
@@ -36,3 +42,16 @@ export default function apiFilter(filter, type, search) {
     return null;
   }
 }
+
+export const categoryFilter = (category, type) => {
+  switch (type) {
+  case 'meals':
+    return fetchData(
+      `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`,
+    );
+  case 'drinks':
+    return fetchData(`www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`);
+  default:
+    return console.log('default category');
+  }
+};

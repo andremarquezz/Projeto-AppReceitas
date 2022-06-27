@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 // import { saveLocalStorage } from '../../services/LocalStorage';
 import './index.css';
 
@@ -12,11 +12,11 @@ function RecipesInProgress() {
   } = useHistory();
 
   const urlName = pathname.split('/');
-  const [ingredients] = useState(
-    dataBase[0].filter(
-      (key) => key.include('strIngredients') && key !== '' && key !== null,
-    ),
-  );
+  // const [ingredients] = useState(
+  //   dataBase[0].filter(
+  //     (key) => key.include('strIngredients') && key !== '' && key !== null,
+  //   ),
+  // );
 
   // );
 
