@@ -2,7 +2,6 @@ import React from 'react';
 // import { useHistory } from 'react-router-dom';
 // import { useSelector } from 'react-redux';
 // import { saveLocalStorage } from '../../services/LocalStorage';
-import './index.css';
 
 function RecipesInProgress() {
   // const [textDecoration, setTextDecoration] = useState(false);

@@ -15,6 +15,7 @@ import './index.css';
 function ListRecipies() {
   const dispatch = useDispatch();
   const [categories, setCategories] = useState([]);
+  const [lastCategory, setlastCategory] = useState('');
   const cardCategories = useSelector(({ filters }) => filters.cardCategories);
   const { pathname } = useLocation();
   const maxCategory = 5;
@@ -28,9 +29,17 @@ function ListRecipies() {
   }, [pathname]);
 
   const btnFilterCategory = (category) => {
+    console.log({ category });
+    console.log({ lastCategory });
+    console.log(lastCategory === category);
+    if (lastCategory === category) {
+      dispatch(actionCardCategories(false));
+    }
     const type = pathname === '/foods' ? 'meals' : 'drinks';
     categoryFilter(category, type)
       .then((response) => dispatch(actionCategoryFilter(response)));
+    setlastCategory(category);
+
     dispatch(actionCardCategories(true));
   };
 
@@ -44,6 +53,7 @@ function ListRecipies() {
           <button
             type="button"
             className="btn-filter"
+            data-testid="All-category-filter"
             onClick={ () => dispatch(actionCardCategories(false)) }
           >
             All

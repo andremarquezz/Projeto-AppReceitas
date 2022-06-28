@@ -50,11 +50,10 @@ export default function Details() {
     const measures = objKays.filter((objKey) => objKey.includes('Measure'));
     console.log(ingredients);
 
-    const newIngredients = ingredients.map(
-      (ingredientList, index) => (detailsObj[ingredientList]
+    const newIngredients = ingredients
+      .map((ingredientList, index) => (detailsObj[ingredientList]
         ? `${detailsObj[ingredientList]} - ${detailsObj[measures[index]]}`
-        : false),
-    );
+        : false));
 
     const ingredientsItem = newIngredients.filter((item) => item !== false);
 
@@ -80,15 +79,15 @@ export default function Details() {
 
   return (
     <div className="details-container">
-      {(!loading) && (
+      {!loading && (
         <>
           <div className="card-details-header">
             <img
-              src={ (
-                (detailsType === 'meals')
+              src={
+                detailsType === 'meals'
                   ? recipeDetails.meals[0].strMealThumb
                   : recipeDetails.drinks[0].strDrinkThumb
-              ) }
+              }
               alt="Icon"
               className="image-recipes"
               data-testid="recipe-photo"
@@ -100,29 +99,17 @@ export default function Details() {
           <div className="card-details-body">
             <div className="title-header">
               <h1 data-testid="recipe-title">
-                {(
-                  (detailsType === 'meals')
-                    ? recipeDetails.meals[0].strMeal
-                    : recipeDetails.drinks[0].strDrink)}
+                {detailsType === 'meals'
+                  ? recipeDetails.meals[0].strMeal
+                  : recipeDetails.drinks[0].strDrink}
               </h1>
               <div className="icons-action">
-                <img
-                  src={ shareIcon }
-                  alt="IconShare"
-                  data-testid="share-btn"
-                />
-                <img
-                  src={ haertIcon }
-                  alt="IconHaert"
-                  data-testid="favorite-btn"
-                />
+                <img src={ shareIcon } alt="IconShare" data-testid="share-btn" />
+                <img src={ haertIcon } alt="IconHaert" data-testid="favorite-btn" />
               </div>
             </div>
-            <strong
-              className="currency"
-              data-testid="recipe-category"
-            >
-              {(detailsType === 'meals')
+            <strong className="currency" data-testid="recipe-category">
+              {detailsType === 'meals'
                 ? recipeDetails.meals[0].strCategory
                 : recipeDetails.drinks[0].strAlcoholic}
             </strong>
@@ -131,10 +118,7 @@ export default function Details() {
               <h4>Ingredients</h4>
               <ul className="ingredients-list">
                 {createIngredientArray(detailsType).map((item, index) => (
-                  <li
-                    key={ index }
-                    data-testid={ `${index}-ingredient-name-and-measure` }
-                  >
+                  <li key={ index } data-testid={ `${index}-ingredient-name-and-measure` }>
                     {item}
                   </li>
                 ))}
@@ -144,12 +128,12 @@ export default function Details() {
             <div className="card-details-instructions">
               <h4>Instructions</h4>
               <p data-testid="instructions">
-                {(detailsType === 'meals')
+                {detailsType === 'meals'
                   ? recipeDetails.meals[0].strInstructions
                   : recipeDetails.drinks[0].strInstructions}
               </p>
             </div>
-            {(detailsType !== 'drinks') && (
+            {detailsType !== 'drinks' && (
               <div className="embed">
                 <h4>Video</h4>
                 <div className="embed-video">
@@ -170,11 +154,7 @@ export default function Details() {
             <div className="cards-recomended">
               <h4>Remended</h4>
               <ul className="cards-remended-list">
-                <RecomedeCard
-                  filter={ (detailsType === 'meals')
-                    ? 'drinks'
-                    : 'meals' }
-                />
+                <RecomedeCard filter={ detailsType === 'meals' ? 'drinks' : 'meals' } />
               </ul>
             </div>
 
