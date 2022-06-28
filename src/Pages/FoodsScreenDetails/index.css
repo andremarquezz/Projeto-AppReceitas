@@ -149,7 +149,7 @@
   list-style: none;
   margin-top: 15px;
   max-height: 400px;
-  overflow-x: auto;
+  overflow-x: scroll;
   transition: cubic-bezier(0.55, 0.085, 0.68, 0.53);
   width: 100%;
 }
