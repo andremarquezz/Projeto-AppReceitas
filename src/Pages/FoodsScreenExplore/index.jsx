@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { getSurpriseMe } from '../../services/apiFilter';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
@@ -10,6 +11,12 @@ import nationalitIcon from '../../images/nationalit.svg';
 
 function FoodsScreenExplore() {
   const { push } = useHistory();
+
+  const handleGetSurpriseMe = async () => {
+    const response = await getSurpriseMe('meals');
+    const id = response.meals[0].idMeal;
+    push(`/foods/${id}`);
+  };
 
   return (
     <div className="foods-explorer-container">
@@ -34,6 +41,7 @@ function FoodsScreenExplore() {
         <button
           type="button"
           data-testid="explore-surprise"
+          onClick={ () => handleGetSurpriseMe() }
         >
           Surprise me!
           <img src={ surpraseIcon } alt="surpraseIcon" />
