@@ -50,9 +50,11 @@ export const categoryFilter = (category, type) => {
       `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`,
     );
   case 'drinks':
-    return fetchData(`www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`);
+    return fetchData(
+      `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`,
+    );
   default:
-    return console.log('default category');
+    return '404 categoryFilter';
   }
 };
 

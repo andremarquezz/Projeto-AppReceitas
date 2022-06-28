@@ -29,18 +29,17 @@ function ListRecipies() {
   }, [pathname]);
 
   const btnFilterCategory = (category) => {
-    console.log({ category });
-    console.log({ lastCategory });
-    console.log(lastCategory === category);
     if (lastCategory === category) {
       dispatch(actionCardCategories(false));
-    }
-    const type = pathname === '/foods' ? 'meals' : 'drinks';
-    categoryFilter(category, type)
-      .then((response) => dispatch(actionCategoryFilter(response)));
-    setlastCategory(category);
+      setlastCategory('');
+    } else {
+      const type = pathname === '/foods' ? 'meals' : 'drinks';
+      categoryFilter(category, type)
+        .then((response) => dispatch(actionCategoryFilter(response)));
+      setlastCategory(category);
 
-    dispatch(actionCardCategories(true));
+      dispatch(actionCardCategories(true));
+    }
   };
 
   return (

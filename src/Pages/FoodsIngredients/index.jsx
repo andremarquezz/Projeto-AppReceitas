@@ -27,8 +27,6 @@ function FoodsIngredients() {
     getByIngredients();
   }, []);
 
-  console.log(ingredientsList);
-
   return (
     <div>
       <Header />

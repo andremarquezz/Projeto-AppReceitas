@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import apiDetails from '../../services/apiDetails';
-// import CardRecommendedRecipes from '../CardRecommendedRecipes';
-// import { getLocalStorage } from '../../services/LocalStorage';
-
 import RecomedeCard from '../RecomedeCard';
 import shareIcon from '../../images/shareIcon.svg';
 import haertIcon from '../../images/blackHeartIcon.svg';
 import leftIcon from '../../images/left.svg';
+import './index.css';
 
 const youtubeVidConfig = (url) => {
   const link = url.split('=')[1];
@@ -26,7 +24,6 @@ export default function Details() {
 
   useEffect(() => {
     const split = pathname.split('/');
-
     const detailsData = async () => {
       const data = await apiDetails(split[1], split[2]);
 
@@ -48,7 +45,6 @@ export default function Details() {
     const objKays = Object.keys(detailsObj);
     const ingredients = objKays.filter((objKey) => objKey.includes('Ingredient'));
     const measures = objKays.filter((objKey) => objKey.includes('Measure'));
-    console.log(ingredients);
 
     const newIngredients = ingredients
       .map((ingredientList, index) => (detailsObj[ingredientList]
@@ -59,15 +55,6 @@ export default function Details() {
 
     return ingredientsItem;
   };
-
-  // const checkMyRecipes = () => {
-  //   const split = pathname.split('/');
-  //   const recipeNotMade = getLocalStorage(split[2]);
-  //   if (recipeNotMade === null) {
-  //     return true;
-  //   }
-  //   return false;
-  // };
 
   const handleComeBack = () => {
     const split = pathname.split('/');
@@ -113,7 +100,6 @@ export default function Details() {
                 ? recipeDetails.meals[0].strCategory
                 : recipeDetails.drinks[0].strAlcoholic}
             </strong>
-
             <div className="card-details-ingredients">
               <h4>Ingredients</h4>
               <ul className="ingredients-list">
@@ -165,6 +151,7 @@ export default function Details() {
               type="button"
               className="btn-start-recipies"
               data-testid="start-recipe-btn"
+              onClick={ () => push(`/${split[1]}/${split[2]}/in-progress`) }
             >
               Start Recipies
             </button>
