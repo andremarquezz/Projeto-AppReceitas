@@ -135,9 +135,10 @@
   color: white;
   font-size: 19px;
   font-weight: 700;
-  height: 65px;
+  height: 50px;
+  left: 25%;
   position: fixed;
-  width: 100%;
+  width: 200px;
 }
 
 .cards-recomended {

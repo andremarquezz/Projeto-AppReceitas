@@ -24,8 +24,8 @@ export default function Details() {
     push,
   } = useHistory();
 
-  const split = pathname.split('/');
   useEffect(() => {
+    const split = pathname.split('/');
     const detailsData = async () => {
       const data = await apiDetails(split[1], split[2]);
 
@@ -33,7 +33,7 @@ export default function Details() {
       setRecipeDetails(data);
     };
     detailsData();
-  }, [pathname, split]);
+  }, [pathname]);
 
   useEffect(() => {
     if (detailsType !== '') {
@@ -59,11 +59,14 @@ export default function Details() {
   };
 
   const handleComeBack = () => {
+    const split = pathname.split('/');
     if (split[1] === 'foods') {
       return push('/foods');
     }
     return push('/drinks');
   };
+
+  console.log(recipeDetails.meals);
 
   return (
     <div className="details-container">
@@ -101,7 +104,6 @@ export default function Details() {
                 ? recipeDetails.meals[0].strCategory
                 : recipeDetails.drinks[0].strAlcoholic}
             </strong>
-
             <div className="card-details-ingredients">
               <h4>Ingredients</h4>
               <ul className="ingredients-list">
