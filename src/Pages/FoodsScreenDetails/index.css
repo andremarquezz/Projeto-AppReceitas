@@ -131,10 +131,12 @@
   background: #04d361;
   border: none;
   border-radius: 8px;
+  bottom: 0;
   color: white;
   font-size: 19px;
   font-weight: 700;
   height: 65px;
+  position: fixed;
   width: 100%;
 }
 
@@ -144,7 +146,7 @@
 
 .cards-remended-list {
   display: grid;
-  gap: 10px;
+  gap: 15px;
   grid-template-columns: repeat(6, 1fr);
   list-style: none;
   margin-top: 15px;
