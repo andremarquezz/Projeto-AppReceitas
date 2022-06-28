@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import apiDetails from '../../services/apiDetails';
-// import CardRecommendedRecipes from '../CardRecommendedRecipes';
-// import { getLocalStorage } from '../../services/LocalStorage';
-
 import RecomedeCard from '../RecomedeCard';
 import shareIcon from '../../images/shareIcon.svg';
 import haertIcon from '../../images/blackHeartIcon.svg';
 import leftIcon from '../../images/left.svg';
+import './index.css';
 
 const youtubeVidConfig = (url) => {
   const link = url.split('=')[1];
@@ -65,8 +63,6 @@ export default function Details() {
     }
     return push('/drinks');
   };
-
-  console.log(recipeDetails.meals);
 
   return (
     <div className="details-container">
