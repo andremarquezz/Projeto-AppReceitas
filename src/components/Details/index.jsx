@@ -118,7 +118,10 @@ export default function Details() {
               <h4>Ingredients</h4>
               <ul className="ingredients-list">
                 {createIngredientArray(detailsType).map((item, index) => (
-                  <li key={ index } data-testid={ `${index}-ingredient-name-and-measure` }>
+                  <li
+                    key={ index }
+                    data-testid={ `${index}-ingredient-name-and-measure` }
+                  >
                     {item}
                   </li>
                 ))}
