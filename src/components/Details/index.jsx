@@ -11,7 +11,9 @@ const youtubeVidConfig = (url) => {
 
 export default function Details() {
   const [recipeDetails, setRecipeDetails] = useState([]);
-  const { location: { pathname } } = useHistory();
+  const {
+    location: { pathname },
+  } = useHistory();
 
   const pathnameSplited = () => {
     const split = pathname.split('/');
@@ -28,10 +30,7 @@ export default function Details() {
       setRecipeDetails(data);
     };
     detailsData();
-  }, [pathname]);
-
-  //  ===> APAGAR ISSO <===
-  if (recipeDetails.meals) { console.log(recipeDetails.meals[0]); }
+  }, [pathname, pathnameSplited]);
 
   const createIngredientArray = (type) => {
     const detailsObj = recipeDetails[type][0];
@@ -39,19 +38,17 @@ export default function Details() {
     const ingredients = objKays.filter((objKey) => objKey.includes('Ingredient'));
     const measures = objKays.filter((objKey) => objKey.includes('Measure'));
 
-    return (
-      ingredients.map((ingredientList, index) => (
-        detailsObj[ingredientList]
-          ? `${detailsObj[ingredientList]} - ${detailsObj[measures[index]]}`
-          : false
-      ))
-    );
+    return ingredients.map((ingredientList, index) => (detailsObj[ingredientList]
+      ? `${detailsObj[ingredientList]} - ${detailsObj[measures[index]]}`
+      : false));
   };
 
   const checkMyRecipes = () => {
     const recipeId = pathnameSplited();
     const recipeNotMade = getLocalStorage(recipeId.id);
-    if (recipeNotMade === null) { return true; }
+    if (recipeNotMade === null) {
+      return true;
+    }
     return false;
   };
 
@@ -59,42 +56,32 @@ export default function Details() {
   return (
     <div className="details-container">
       <div className="details-contente">
-        {recipeDetails
-        && meals
-        && (
+        {recipeDetails && meals && (
           <>
             <img
               src={ meals[0].strMealThumb }
               alt="meal photograph"
               data-testid="recipe-photo"
             />
-            <h3 data-testid="recipe-title">{ meals[0].strMeal }</h3>
+            <h3 data-testid="recipe-title">{meals[0].strMeal}</h3>
 
-            <button
-              type="button"
-              data-testid="share-btn"
-            >
+            <button type="button" data-testid="share-btn">
               compartilhar
             </button>
 
-            <button
-              type="button"
-              data-testid="favorite-btn"
-            >
+            <button type="button" data-testid="favorite-btn">
               favoritar
             </button>
 
-            <p data-testid="recipe-category">{ meals[0].strCategory }</p>
-            { createIngredientArray('meals').map((item, index) => (
-              <p
-                key={ index }
-                data-testid={ `${index}-ingredient-name-and-measure` }
-              >
-                { item }
-              </p>)) }
+            <p data-testid="recipe-category">{meals[0].strCategory}</p>
+            {createIngredientArray('meals').map((item, index) => (
+              <p key={ index } data-testid={ `${index}-ingredient-name-and-measure` }>
+                {item}
+              </p>
+            ))}
 
             <h3>Intructions</h3>
-            <p data-testid="instructions">{ meals[0].strInstructions }</p>
+            <p data-testid="instructions">{meals[0].strInstructions}</p>
 
             <h3>Video</h3>
             <iframe
@@ -108,54 +95,45 @@ export default function Details() {
             />
 
             <CardRecommendedRecipes filter="drinks" />
-
           </>
         )}
 
-        {recipeDetails
-        && drinks
-        && (
+        {recipeDetails && drinks && (
           <>
             <img
               src={ drinks[0].strDrinkThumb }
               alt="meal photograph"
               data-testid="recipe-photo"
             />
-            <h3 data-testid="recipe-title">{ drinks[0].strDrink }</h3>
-            <p data-testid="recipe-category">{ drinks[0].strAlcoholic }</p>
+            <h3 data-testid="recipe-title">{drinks[0].strDrink}</h3>
+            <p data-testid="recipe-category">{drinks[0].strAlcoholic}</p>
 
-            <button
-              type="button"
-              data-testid="share-btn"
-            >
+            <button type="button" data-testid="share-btn">
               compartilhar
             </button>
 
-            <button
-              type="button"
-              data-testid="favorite-btn"
-            >
+            <button type="button" data-testid="favorite-btn">
               favoritar
             </button>
 
-            <p>{ drinks[0].strCategory }</p>
-            { createIngredientArray('drinks').map((item, idx) => (
-              <p
-                key={ idx }
-                data-testid={ `${idx}-ingredient-name-and-measure` }
-              >
-                { item }
-              </p>)) }
+            <p>{drinks[0].strCategory}</p>
+            {createIngredientArray('drinks').map((item, idx) => (
+              <p key={ idx } data-testid={ `${idx}-ingredient-name-and-measure` }>
+                {item}
+              </p>
+            ))}
 
             <h3>Intructions</h3>
-            <p data-testid="instructions">{ drinks[0].strInstructions }</p>
+            <p data-testid="instructions">{drinks[0].strInstructions}</p>
 
             <CardRecommendedRecipes filter="meals" />
           </>
         )}
-        {checkMyRecipes()
-        && <button type="button" data-testid="start-recipe-btn">Start Recipe</button>}
-
+        {checkMyRecipes() && (
+          <button type="button" data-testid="start-recipe-btn">
+            Start Recipe
+          </button>
+        )}
       </div>
     </div>
   );

@@ -5,11 +5,15 @@ const INITIAL_STATE = {
   mealOrDrink: 'meal',
   filteredData: '',
   radioFilter: 'name',
+  categoryFilter: [],
+  cardCategories: false,
 };
 
 const reducers = {
   actionFilteredData: (state, { payload }) => {
-    if (payload === null) { return; }
+    if (payload === null) {
+      return;
+    }
     state.filteredData = payload;
     if (!payload.drinks && !payload.meals) {
       state.filteredData = [];
@@ -24,6 +28,12 @@ const reducers = {
   actionRadioFilter: (state, { payload }) => {
     state.radioFilter = payload;
   },
+  actionCategoryFilter: (state, { payload }) => {
+    state.categoryFilter = payload;
+  },
+  actionCardCategories: (state, { payload }) => {
+    state.cardCategories = payload;
+  },
 };
 
 export const slice = createSlice({
@@ -32,7 +42,13 @@ export const slice = createSlice({
   reducers,
 });
 
-export const { actionTextFilter, actionFilteredData, actionMealOrDrink, actionRadioFilter,
+export const {
+  actionTextFilter,
+  actionFilteredData,
+  actionMealOrDrink,
+  actionRadioFilter,
+  actionCategoryFilter,
+  actionCardCategories,
 } = slice.actions;
 
 export default slice.reducer;

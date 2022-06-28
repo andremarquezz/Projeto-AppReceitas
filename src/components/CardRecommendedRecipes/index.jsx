@@ -22,7 +22,6 @@ export default function CardRecommendedRecipes({ filter }) {
     };
     cardItens();
   }, [filter]);
-  console.log(recommendedRecipes);
 
   return (
     <div className="recommended-container">
