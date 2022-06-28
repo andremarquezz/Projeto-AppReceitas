@@ -24,9 +24,8 @@ export default function Details() {
     push,
   } = useHistory();
 
+  const split = pathname.split('/');
   useEffect(() => {
-    const split = pathname.split('/');
-
     const detailsData = async () => {
       const data = await apiDetails(split[1], split[2]);
 
@@ -34,7 +33,7 @@ export default function Details() {
       setRecipeDetails(data);
     };
     detailsData();
-  }, [pathname]);
+  }, [pathname, split]);
 
   useEffect(() => {
     if (detailsType !== '') {
@@ -48,7 +47,6 @@ export default function Details() {
     const objKays = Object.keys(detailsObj);
     const ingredients = objKays.filter((objKey) => objKey.includes('Ingredient'));
     const measures = objKays.filter((objKey) => objKey.includes('Measure'));
-    console.log(ingredients);
 
     const newIngredients = ingredients
       .map((ingredientList, index) => (detailsObj[ingredientList]
@@ -60,17 +58,7 @@ export default function Details() {
     return ingredientsItem;
   };
 
-  // const checkMyRecipes = () => {
-  //   const split = pathname.split('/');
-  //   const recipeNotMade = getLocalStorage(split[2]);
-  //   if (recipeNotMade === null) {
-  //     return true;
-  //   }
-  //   return false;
-  // };
-
   const handleComeBack = () => {
-    const split = pathname.split('/');
     if (split[1] === 'foods') {
       return push('/foods');
     }
@@ -165,6 +153,7 @@ export default function Details() {
               type="button"
               className="btn-start-recipies"
               data-testid="start-recipe-btn"
+              onClick={ () => push(`/${split[1]}/${split[2]}/in-progress`) }
             >
               Start Recipies
             </button>
