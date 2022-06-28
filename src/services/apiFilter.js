@@ -55,3 +55,14 @@ export const categoryFilter = (category, type) => {
     return console.log('default category');
   }
 };
+
+export const getSurpriseMe = (type) => {
+  switch (type) {
+  case 'meals':
+    return fetchData('https://www.themealdb.com/api/json/v1/1/random.php');
+  case 'drinks':
+    return fetchData('https://www.thecocktaildb.com/api/json/v1/1/random.php');
+  default:
+    return [];
+  }
+};

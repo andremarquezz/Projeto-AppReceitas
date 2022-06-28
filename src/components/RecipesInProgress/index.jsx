@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import React from 'react';
+// import { useHistory } from 'react-router-dom';
+// import { useSelector } from 'react-redux';
 // import { saveLocalStorage } from '../../services/LocalStorage';
-import './index.css';
 
 function RecipesInProgress() {
   // const [textDecoration, setTextDecoration] = useState(false);
@@ -11,7 +10,7 @@ function RecipesInProgress() {
   //   location: { pathname },
   // } = useHistory();
 
-  const urlName = pathname.split('/');
+  // const urlName = pathname.split('/');
   // const [ingredients] = useState(
   //   dataBase[0].filter(
   //     (key) => key.include('strIngredients') && key !== '' && key !== null,

@@ -5,9 +5,6 @@ import { Link, useHistory } from 'react-router-dom';
 function CardByCategory() {
   const data = useSelector(({ filters }) => filters.categoryFilter);
   const MAX_LENGTH = 12;
-
-  console.log(data);
-
   const {
     location: { pathname },
   } = useHistory();
