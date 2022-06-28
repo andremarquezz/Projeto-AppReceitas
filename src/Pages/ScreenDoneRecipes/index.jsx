@@ -9,6 +9,7 @@ const copy = require('clipboard-copy');
 function ScreenDoneRecipes() {
   const [filter, setFilter] = useState('all');
   const [copied, setCopied] = useState(false);
+
   const doneRecipes = [
     {
       id: '52771',
@@ -34,9 +35,18 @@ function ScreenDoneRecipes() {
     },
   ].filter((recipe) => (filter === 'all' || recipe.type === filter));
 
+  const copiedOnScreenTimer = () => {
+    const TEXT_TIMER = 5000;
+    setCopied(true);
+    const textTimeout = setTimeout(() => {
+      setCopied(false);
+      clearTimeout(textTimeout);
+    }, TEXT_TIMER);
+  };
+
   const copyToClipboard = (type, id) => {
     copy(`http://localhost:3000/${type}/${id}`);
-    setCopied(true);
+    copiedOnScreenTimer();
   };
 
   return (
