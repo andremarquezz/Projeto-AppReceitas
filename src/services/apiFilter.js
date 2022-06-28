@@ -58,6 +58,21 @@ export const categoryFilter = (category, type) => {
   }
 };
 
+export const filterByIngredients = (ingredient, type) => {
+  switch (type) {
+  case 'foods':
+    return fetchData(
+      `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`,
+    );
+  case 'drinks':
+    return fetchData(
+      `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`,
+    );
+  default:
+    return '';
+  }
+};
+
 export const getSurpriseMe = (type) => {
   switch (type) {
   case 'meals':

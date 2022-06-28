@@ -7,6 +7,7 @@ const INITIAL_STATE = {
   radioFilter: 'name',
   categoryFilter: [],
   cardCategories: false,
+  dataIngredient: false,
 };
 
 const reducers = {
@@ -34,6 +35,9 @@ const reducers = {
   actionCardCategories: (state, { payload }) => {
     state.cardCategories = payload;
   },
+  actionFilterIngredients: (state, { payload }) => {
+    state.dataIngredient = payload;
+  },
 };
 
 export const slice = createSlice({
@@ -49,6 +53,7 @@ export const {
   actionRadioFilter,
   actionCategoryFilter,
   actionCardCategories,
+  actionFilterIngredients,
 } = slice.actions;
 
 export default slice.reducer;
