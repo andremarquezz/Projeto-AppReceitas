@@ -40,12 +40,16 @@ export default function CardRecommendedRecipes({ filter }) {
           />
           <div className="card-recomeded-info">
 
-            <span className="recomended-type">hsgdsa</span>
+            <span className="recomended-type">
+              { (
+                (filter === 'meals') ? item.strCategory : item.strAlcoholic)}
+            </span>
             <strong
               className="recomended-title"
               data-testid={ `${index}-recomendation-title` }
             >
               { item[`str${recipeKey}`] }
+              {console.log(index)}
             </strong>
           </div>
         </li>
