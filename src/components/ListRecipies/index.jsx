@@ -29,13 +29,12 @@ function ListRecipies() {
   }, [pathname]);
 
   const btnFilterCategory = (category) => {
-    const cate = category.replace(' ', '_');
     if (lastCategory === category) {
       dispatch(actionCardCategories(false));
       setlastCategory('');
     } else {
       const type = pathname === '/foods' ? 'meals' : 'drinks';
-      categoryFilter(cate, type)
+      categoryFilter(category, type)
         .then((response) => dispatch(actionCategoryFilter(response)));
       setlastCategory(category);
 
