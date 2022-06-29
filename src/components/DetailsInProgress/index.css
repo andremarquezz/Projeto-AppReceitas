@@ -1,0 +1,161 @@
+.card-details-content {
+  width: 100%;
+}
+
+.card-details-content h4 {
+  color: #32264d;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.card-details-header {
+  height: 370px;
+  width: 100%;
+}
+
+.image-recipes {
+  height: 350px;
+  position: absolute;
+  width: 100%;
+  z-index: 0;
+}
+
+.card-details-header button {
+  background: #f9a825;
+  border: none;
+  border-radius: 25%;
+  box-shadow: 10px 10px 10px -18px rgba(0, 0, 0, 0.56);
+  height: 50px;
+  left: 20px;
+  position: relative;
+  top: 20px;
+  width: 50px;
+}
+
+.card-details-header button img {
+  width: 14px;
+}
+
+.card-details-title {
+  border-bottom: 1px solid #cbcbcc;
+  padding: 10px 20px;
+  width: 100%;
+}
+
+.currency {
+  color: rgb(114, 110, 110);
+  font-size: 19px;
+  font-weight: 500;
+  margin-top: -35px;
+  max-width: 180px;
+}
+
+.title-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 16px;
+}
+
+.title-header h1 {
+  color: #8257e5;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.icons-action {
+  display: flex;
+  gap: 25px;
+}
+
+.card-details-header .icons-action img {
+  width: 30px;
+}
+
+.card-details-body {
+  background: white;
+  border-top: 2px solid rgb(219, 212, 212);
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: -50px;
+  padding: 20px;
+  z-index: 2;
+}
+
+.card-details-ingredients {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.ingredients-list {
+  background: #44948313;
+  border-radius: 4px;
+  padding: 15px 30px;
+}
+
+.card-details-instructions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-details-instructions p {
+  background: #44948313;
+  border-radius: 4px;
+  font-size: 17px;
+  line-height: 26px;
+  padding: 20px;
+  text-align: justify;
+}
+
+.embed {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.embed-video {
+  background: white;
+  height: 210px;
+  width: 100%;
+}
+
+.btn-start-recipies {
+  background: #04d361;
+  border: none;
+  border-radius: 8px;
+  bottom: 0;
+  color: white;
+  font-size: 19px;
+  font-weight: 700;
+  height: 50px;
+  left: 25%;
+  position: fixed;
+  width: 200px;
+}
+
+.cards-recomended {
+  margin-top: 20px;
+}
+
+.cards-remended-list {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: repeat(6, 1fr);
+  list-style: none;
+  margin-top: 15px;
+  max-height: 400px;
+  overflow-x: scroll;
+  transition: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  width: 100%;
+}
+
+.cards-remended-list::-webkit-scrollbar {
+  width: 0;
+}
