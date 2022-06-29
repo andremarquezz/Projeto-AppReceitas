@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import apiDetails from '../../services/apiDetails';
-// import CardRecommendedRecipes from '../CardRecommendedRecipes';
+import localStorageRecipeVerify from '../../services/localStorageRecipeVerify';
+import favoriteStoreControl from '../../services/favoriteStoreControl';
 // import { getLocalStorage } from '../../services/LocalStorage';
 
 import RecomedeCard from '../RecomedeCard';
@@ -14,10 +15,17 @@ const youtubeVidConfig = (url) => {
   return `https://www.youtube.com/embed/${link}`;
 };
 
+const BUTTON_STATE = {
+  state: true,
+  text: 'Start Recipe',
+  favorite: false,
+};
+
 export default function Details() {
   const [recipeDetails, setRecipeDetails] = useState('');
   const [detailsType, setDetailsType] = useState('');
   const [loading, setLoading] = useState(true);
+  const [buttonControl, setButtonControl] = useState(BUTTON_STATE);
 
   const {
     location: { pathname },
@@ -25,15 +33,17 @@ export default function Details() {
   } = useHistory();
 
   const split = pathname.split('/');
+  const location = split[1];
+  const id = split[2];
   useEffect(() => {
     const detailsData = async () => {
-      const data = await apiDetails(split[1], split[2]);
+      const data = await apiDetails(location, id);
 
       setDetailsType(Object.entries(data)[0][0]);
       setRecipeDetails(data);
     };
     detailsData();
-  }, [pathname, split]);
+  }, [location, id]);
 
   useEffect(() => {
     if (detailsType !== '') {
@@ -65,6 +75,30 @@ export default function Details() {
     return push('/drinks');
   };
 
+  useEffect(() => {
+    const productData = localStorageRecipeVerify(id);
+
+    setButtonControl({
+      state: productData.recipeDone,
+      text: productData.recipeInProgress,
+      favorite: productData.recipefavorite,
+    });
+  }, [id]);
+
+  const btnStartRecipe = () => {
+    push(`/${location}/${id}/in-progress`);
+  };
+
+  const btnShare = () => {
+    navigator.clipboard.writeText(`http://localhost:3000${pathname}`);
+    global.alert('Link copied!');
+  };
+
+  const btnFavorite = () => {
+    favoriteStoreControl(recipeDetails, detailsType, id);
+  };
+
+  //  ====//====BODY====//====//
   return (
     <div className="details-container">
       {!loading && (
@@ -91,10 +125,30 @@ export default function Details() {
                   ? recipeDetails.meals[0].strMeal
                   : recipeDetails.drinks[0].strDrink}
               </h1>
-              <div className="icons-action">
-                <img src={ shareIcon } alt="IconShare" data-testid="share-btn" />
-                <img src={ haertIcon } alt="IconHaert" data-testid="favorite-btn" />
-              </div>
+
+              <button
+                type="button"
+                onClick={ () => btnShare() }
+              >
+                <img
+                  className="icons-action"
+                  src={ shareIcon }
+                  alt="IconShare"
+                  data-testid="share-btn"
+                />
+              </button>
+
+              <button
+                type="button"
+                onClick={ () => btnFavorite() }
+              >
+                <img
+                  src={ haertIcon }
+                  alt="IconHaert"
+                  data-testid="favorite-btn"
+                  className="icons-action"
+                />
+              </button>
             </div>
             <strong className="currency" data-testid="recipe-category">
               {detailsType === 'meals'
@@ -153,9 +207,9 @@ export default function Details() {
               type="button"
               className="btn-start-recipies"
               data-testid="start-recipe-btn"
-              onClick={ () => push(`/${split[1]}/${split[2]}/in-progress`) }
+              onClick={ () => btnStartRecipe() }
             >
-              Start Recipies
+              { buttonControl.text }
             </button>
           </div>
         </>
