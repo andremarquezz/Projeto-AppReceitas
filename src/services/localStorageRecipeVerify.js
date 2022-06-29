@@ -1,20 +1,31 @@
 import { getLocalStorage } from './LocalStorage';
 
-export default function localStorageProductVerify(productId) {
+const verifyRecipeinProgress = (storageData, type, id) => {
+  console.log(type);
+  const localType = type === 'foods'
+    ? 'meals' : 'cocktails';
+  const myRecipes = Object.keys(storageData[localType]);
+  return myRecipes.some((ids) => ids === id);
+};
+
+//  ===MAIN FUNCTION===//
+export default function localStorageRecipeVerify(type, id) {
   const recipeDoneStorage = getLocalStorage('doneRecipes');
   const recipeDone = (recipeDoneStorage)
-    ? recipeDoneStorage.some((recipe) => recipe.id === productId) : false;
+    ? recipeDoneStorage.some((recipe) => recipe.id === id) : false;
 
-  const recipeInProgressStorage = getLocalStorage('inProgressRecipes');
-  const recipeInProgressCheck = recipeInProgressStorage
-    ?.some((recipe) => recipe.id === productId);
+  const inProgressStorage = getLocalStorage('inProgressRecipes');
+  let recipeInProgressCheck = false;
+  if (inProgressStorage) {
+    recipeInProgressCheck = verifyRecipeinProgress(inProgressStorage, type, id);
+  }
 
   const recipeInProgress = (recipeInProgressCheck)
     ? 'Continue Recipe' : 'Start Recipe';
 
   const recipefavoriteStorage = getLocalStorage('favoriteRecipes');
   const recipefavorite = (recipefavoriteStorage)
-    ? recipefavoriteStorage.some((recipe) => recipe.id === productId) : false;
+    ? recipefavoriteStorage.some((recipe) => recipe.id === id) : false;
 
   return {
     recipeDone,

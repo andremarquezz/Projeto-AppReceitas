@@ -3,11 +3,12 @@ import { useHistory } from 'react-router-dom';
 import apiDetails from '../../services/apiDetails';
 import localStorageRecipeVerify from '../../services/localStorageRecipeVerify';
 import favoriteStoreControl from '../../services/favoriteStoreControl';
-// import { getLocalStorage } from '../../services/LocalStorage';
+import inProgressStoreControl from '../../services/inProgressStoreControl';
 
 import RecomedeCard from '../RecomedeCard';
 import shareIcon from '../../images/shareIcon.svg';
-import haertIcon from '../../images/blackHeartIcon.svg';
+import blackHeartIcon from '../../images/blackHeartIcon.svg';
+import haertIcon from '../../images/whiteHeartIcon.svg';
 import leftIcon from '../../images/left.svg';
 
 const youtubeVidConfig = (url) => {
@@ -76,16 +77,18 @@ export default function Details() {
   };
 
   useEffect(() => {
-    const productData = localStorageRecipeVerify(id);
+    const productData = localStorageRecipeVerify(location, id);
 
     setButtonControl({
       state: productData.recipeDone,
       text: productData.recipeInProgress,
       favorite: productData.recipefavorite,
     });
-  }, [id]);
+  }, [id, location]);
 
   const btnStartRecipe = () => {
+    const ingredients = createIngredientArray(detailsType);
+    inProgressStoreControl(ingredients, detailsType, id);
     push(`/${location}/${id}/in-progress`);
   };
 
@@ -143,7 +146,7 @@ export default function Details() {
                 onClick={ () => btnFavorite() }
               >
                 <img
-                  src={ haertIcon }
+                  src={ buttonControl.favorite ? blackHeartIcon : haertIcon }
                   alt="IconHaert"
                   data-testid="favorite-btn"
                   className="icons-action"
