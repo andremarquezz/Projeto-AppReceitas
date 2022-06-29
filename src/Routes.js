@@ -13,6 +13,7 @@ import DrinksScreenExplore from './Pages/DrinksScreenExplore';
 import DrinksIngredients from './Pages/DrinksIngredients';
 import FoodsIngredients from './Pages/FoodsIngredients';
 import FoodsNationalities from './Pages/FoodsNationalities';
+import NotFound from './components/NotFound/NotFound';
 
 function Routes() {
   return (
@@ -23,18 +24,17 @@ function Routes() {
       <Route exact path="/foods/:id/in-progress" component={ ScreenInProgress } />
       <Route exact path="/foods/:id" component={ ScreenDetails } />
       <Route exact path="/foods" component={ ScreenMain } />
-
       <Route exact path="/explore/drinks/ingredients" component={ DrinksIngredients } />
       <Route exact path="/explore/drinks" component={ DrinksScreenExplore } />
       <Route exact path="/drinks/:id/in-progress" component={ ScreenInProgress } />
       <Route exact path="/drinks/:id" component={ ScreenDetails } />
       <Route exact path="/drinks" component={ ScreenMain } />
-
       <Route exact path="/explore" component={ ScreenExploreMain } />
       <Route exact path="/profile" component={ ScreenProfile } />
       <Route exact path="/done-recipes" component={ ScreenDoneRecipes } />
       <Route exact path="/favorite-recipes" component={ ScreenFavoriteRecipes } />
       <Route exact path="/" component={ Login } />
+      <Route path="*" component={ NotFound } />
     </Switch>
   );
 }
