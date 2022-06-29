@@ -42,7 +42,10 @@ function ScreenDoneRecipes() {
   return (
     <div>
       <Header />
-      <div>
+      <div className="done-description-filter">
+        <strong>Filtros</strong>
+      </div>
+      <div className="filters-done">
         <button
           type="button"
           data-testid="filter-by-all-btn"
@@ -55,7 +58,7 @@ function ScreenDoneRecipes() {
           data-testid="filter-by-food-btn"
           onClick={ () => setFilter('food') }
         >
-          Food
+          Foods
         </button>
         <button
           type="button"
@@ -65,43 +68,57 @@ function ScreenDoneRecipes() {
           Drinks
         </button>
       </div>
-      <div>
+      <div className="done-description-items">
+        <strong>Receitas concluídas</strong>
+      </div>
+      <div className="card-done-content">
         {doneRecipes.map((recipe, index) => (
-          <div key="index">
-            <Link to={ `/${recipe.type}s/${recipe.id}` }>
-              <img
-                src={ recipe.image }
-                alt={ recipe.name }
-                data-testid={ `${index}-horizontal-image` }
-                className="recipe-img"
-              />
-            </Link>
-            <p data-testid={ `${index}-horizontal-top-text` }>
-              {recipe.type === 'food'
-                ? `${recipe.nationality} - ${recipe.category}`
-                : recipe.alcoholicOrNot}
-            </p>
-            <Link to={ `/${recipe.type}s/${recipe.id}` }>
-              <p data-testid={ `${index}-horizontal-name` }>{recipe.name}</p>
-            </Link>
-            <p data-testid={ `${index}-horizontal-done-date` }>{recipe.doneDate}</p>
-            <button
-              type="button"
-              onClick={ () => copyToClipboard(`${recipe.type}s`, recipe.id) }
-            >
-              <img
-                data-testid={ `${index}-horizontal-share-btn` }
-                src={ shareIcon }
-                alt="shareicon"
-              />
-            </button>
-            {copied && <h1>Link copied!</h1>}
-            {recipe.tags.map((tag) => (
-              <p key={ tag } data-testid={ `${index}-${tag}-horizontal-tag` }>
-                {tag}
-              </p>
-            ))}
-          </div>
+          <>
+            <div key="index" className="done-recipies-item">
+              <div className="done-card-img">
+                <Link to={ `/${recipe.type}s/${recipe.id}` }>
+                  <img src="https://www.thecocktaildb.com/images/media/drink/2x8thr1504816928.jpg" alt="icon" />
+                </Link>
+              </div>
+              <div className="done-card-body">
+                <div className="card-body-header">
+                  <p data-testid={ `${index}-horizontal-top-text` }>
+                    {recipe.type === 'food'
+                      ? `${recipe.nationality} - ${recipe.category}`
+                      : recipe.alcoholicOrNot}
+                  </p>
+                  <strong data-testid="-horizontal-done-date">25/04/22</strong>
+                </div>
+                <Link to={ `/${recipe.type}s/${recipe.id}` }>
+                  <p
+                    data-testid={ `${index}-horizontal-name` }
+                    className="horizontal-name"
+                  >
+                    {recipe.name}
+                  </p>
+                </Link>
+                <div className="done-action">
+                  <div className="tags">
+                    {recipe.tags.map((tag) => (
+                      <p key={ tag } data-testid={ `${index}-${tag}-horizontal-tag` }>
+                        {tag}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="btn-share">
+              {copied && <strong>Link copied!</strong>}
+              <button
+                type="button"
+                className="btn-share"
+                onClick={ () => copyToClipboard(`${recipe.type}s`, recipe.id) }
+              >
+                <img src={ shareIcon } alt="IconShare" />
+              </button>
+            </div>
+          </>
         ))}
       </div>
     </div>
