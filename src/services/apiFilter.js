@@ -43,6 +43,17 @@ export default function apiFilter(filter, type, search) {
   }
 }
 
+export const fetchIngredients = (type) => {
+  switch (type) {
+  case 'meals':
+    return fetchData('https://www.themealdb.com/api/json/v1/1/list.php?i=list');
+  case 'drinks':
+    return fetchData('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list');
+  default:
+    return null;
+  }
+};
+
 export const categoryFilter = (category, type) => {
   switch (type) {
   case 'meals':
@@ -50,9 +61,26 @@ export const categoryFilter = (category, type) => {
       `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`,
     );
   case 'drinks':
-    return fetchData(`www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`);
+    return fetchData(
+      `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`,
+    );
   default:
-    return console.log('default category');
+    return '404 categoryFilter';
+  }
+};
+
+export const filterByIngredients = (ingredient, type) => {
+  switch (type) {
+  case 'foods':
+    return fetchData(
+      `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`,
+    );
+  case 'drinks':
+    return fetchData(
+      `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`,
+    );
+  default:
+    return '';
   }
 };
 

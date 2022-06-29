@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import {
   actionCardCategories,
+  actionCardIngredients,
   actionCategoryFilter,
 } from '../../redux/slices/filterSlice';
 import fetchCategories from '../../services/apiCategories';
 import { categoryFilter } from '../../services/apiFilter';
 import CardByCategory from '../CardByCategory';
+import CardByIngredients from '../CardByIngredients';
 import CardMealsOrDrinks from '../CardMealsOrDrinks';
 
 import './index.css';
@@ -17,6 +19,7 @@ function ListRecipies() {
   const [categories, setCategories] = useState([]);
   const [lastCategory, setlastCategory] = useState('');
   const cardCategories = useSelector(({ filters }) => filters.cardCategories);
+  const cardIngredients = useSelector(({ filters }) => filters.cardIngredient);
   const { pathname } = useLocation();
   const maxCategory = 5;
 
@@ -29,18 +32,19 @@ function ListRecipies() {
   }, [pathname]);
 
   const btnFilterCategory = (category) => {
-    console.log({ category });
-    console.log({ lastCategory });
-    console.log(lastCategory === category);
     if (lastCategory === category) {
       dispatch(actionCardCategories(false));
-    }
-    const type = pathname === '/foods' ? 'meals' : 'drinks';
-    categoryFilter(category, type)
-      .then((response) => dispatch(actionCategoryFilter(response)));
-    setlastCategory(category);
+      dispatch(actionCardIngredients(false));
+      setlastCategory('');
+    } else {
+      const type = pathname === '/foods' ? 'meals' : 'drinks';
+      categoryFilter(category, type)
+        .then((response) => dispatch(actionCategoryFilter(response)));
+      setlastCategory(category);
 
-    dispatch(actionCardCategories(true));
+      dispatch(actionCardCategories(true));
+      dispatch(actionCardIngredients(false));
+    }
   };
 
   return (
@@ -54,7 +58,10 @@ function ListRecipies() {
             type="button"
             className="btn-filter"
             data-testid="All-category-filter"
-            onClick={ () => dispatch(actionCardCategories(false)) }
+            onClick={ () => {
+              dispatch(actionCardCategories(false));
+              dispatch(actionCardIngredients(false));
+            } }
           >
             All
           </button>
@@ -73,7 +80,11 @@ function ListRecipies() {
         <div className="description-list">
           <strong>Principais receitas</strong>
         </div>
-        {cardCategories ? <CardByCategory /> : <CardMealsOrDrinks />}
+        {cardIngredients ? (
+          <CardByIngredients />
+        ) : (
+          <div>{cardCategories ? <CardByCategory /> : <CardMealsOrDrinks />}</div>
+        )}
       </div>
     </div>
   );

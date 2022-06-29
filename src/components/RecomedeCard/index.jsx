@@ -24,8 +24,6 @@ export default function CardRecommendedRecipes({ filter }) {
     cardItens();
   }, [filter]);
 
-  console.log(recommendedRecipes);
-
   return (
     <>
       {recommendedRecipes.map((item, index) => (
@@ -49,7 +47,6 @@ export default function CardRecommendedRecipes({ filter }) {
               data-testid={ `${index}-recomendation-title` }
             >
               { item[`str${recipeKey}`] }
-              {console.log(index)}
             </strong>
           </div>
         </li>

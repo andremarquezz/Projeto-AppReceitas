@@ -9,7 +9,7 @@
 }
 
 .card-details-header {
-  height: 350px;
+  height: 370px;
   width: 100%;
 }
 
@@ -82,7 +82,6 @@
   gap: 30px;
   margin-top: -50px;
   padding: 20px;
-  position: relative;
   z-index: 2;
 }
 
@@ -131,11 +130,14 @@
   background: #04d361;
   border: none;
   border-radius: 8px;
+  bottom: 0;
   color: white;
   font-size: 19px;
   font-weight: 700;
-  height: 65px;
-  width: 100%;
+  height: 50px;
+  left: 25%;
+  position: fixed;
+  width: 200px;
 }
 
 .cards-recomended {
@@ -144,12 +146,12 @@
 
 .cards-remended-list {
   display: grid;
-  gap: 10px;
+  gap: 15px;
   grid-template-columns: repeat(6, 1fr);
   list-style: none;
   margin-top: 15px;
   max-height: 400px;
-  overflow-x: auto;
+  overflow-x: scroll;
   transition: cubic-bezier(0.55, 0.085, 0.68, 0.53);
   width: 100%;
 }

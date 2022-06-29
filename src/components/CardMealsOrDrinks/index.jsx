@@ -12,16 +12,23 @@ function CardMealsOrDrinks() {
   const reduxFilters = useSelector(({ filters }) => filters);
   const dispatch = useDispatch();
 
-  const { textFilter, mealOrDrink, radioFilter, filteredData: data } = reduxFilters;
+  const {
+    textFilter,
+    mealOrDrink,
+    radioFilter,
+    filteredData: data,
+    dataIngredient,
+  } = reduxFilters;
 
   useEffect(() => {
     const fetchApi = async () => {
+      if (dataIngredient) return;
       const apiData = await apiFilter(mealOrDrink, radioFilter, textFilter);
       dispatch(actionFilteredData(apiData));
     };
 
     fetchApi();
-  }, [dispatch, mealOrDrink, radioFilter, textFilter]);
+  }, [dispatch, mealOrDrink, radioFilter, textFilter, dataIngredient]);
 
   const {
     location: { pathname },
