@@ -48,7 +48,7 @@ export const fetchIngredients = (type) => {
   case 'meals':
     return fetchData('https://www.themealdb.com/api/json/v1/1/list.php?i=list');
   case 'drinks':
-    return fetchData('hwww.thecocktaildb.com/api/json/v1/1/list.php?i=list');
+    return fetchData('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list');
   default:
     return null;
   }

@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import {
   actionCardCategories,
+  actionCardIngredients,
   actionCategoryFilter,
 } from '../../redux/slices/filterSlice';
 import fetchCategories from '../../services/apiCategories';
 import { categoryFilter } from '../../services/apiFilter';
 import CardByCategory from '../CardByCategory';
+import CardByIngredients from '../CardByIngredients';
 import CardMealsOrDrinks from '../CardMealsOrDrinks';
 
 import './index.css';
@@ -17,6 +19,7 @@ function ListRecipies() {
   const [categories, setCategories] = useState([]);
   const [lastCategory, setlastCategory] = useState('');
   const cardCategories = useSelector(({ filters }) => filters.cardCategories);
+  const cardIngredients = useSelector(({ filters }) => filters.cardIngredient);
   const { pathname } = useLocation();
   const maxCategory = 5;
 
@@ -31,6 +34,7 @@ function ListRecipies() {
   const btnFilterCategory = (category) => {
     if (lastCategory === category) {
       dispatch(actionCardCategories(false));
+      dispatch(actionCardIngredients(false));
       setlastCategory('');
     } else {
       const type = pathname === '/foods' ? 'meals' : 'drinks';
@@ -39,6 +43,7 @@ function ListRecipies() {
       setlastCategory(category);
 
       dispatch(actionCardCategories(true));
+      dispatch(actionCardIngredients(false));
     }
   };
 
@@ -53,7 +58,10 @@ function ListRecipies() {
             type="button"
             className="btn-filter"
             data-testid="All-category-filter"
-            onClick={ () => dispatch(actionCardCategories(false)) }
+            onClick={ () => {
+              dispatch(actionCardCategories(false));
+              dispatch(actionCardIngredients(false));
+            } }
           >
             All
           </button>
@@ -72,7 +80,11 @@ function ListRecipies() {
         <div className="description-list">
           <strong>Principais receitas</strong>
         </div>
-        {cardCategories ? <CardByCategory /> : <CardMealsOrDrinks />}
+        {cardIngredients ? (
+          <CardByIngredients />
+        ) : (
+          <div>{cardCategories ? <CardByCategory /> : <CardMealsOrDrinks />}</div>
+        )}
       </div>
     </div>
   );

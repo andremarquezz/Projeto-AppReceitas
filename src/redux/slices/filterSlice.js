@@ -8,6 +8,7 @@ const INITIAL_STATE = {
   categoryFilter: [],
   cardCategories: false,
   dataIngredient: false,
+  cardIngredient: false,
 };
 
 const reducers = {
@@ -29,14 +30,17 @@ const reducers = {
   actionRadioFilter: (state, { payload }) => {
     state.radioFilter = payload;
   },
-  actionCategoryFilter: (state, { payload }) => {
-    state.categoryFilter = payload;
-  },
   actionCardCategories: (state, { payload }) => {
     state.cardCategories = payload;
   },
   actionFilterIngredients: (state, { payload }) => {
     state.dataIngredient = payload;
+  },
+  actionCategoryFilter: (state, { payload }) => {
+    state.categoryFilter = payload;
+  },
+  actionCardIngredients: (state, { payload }) => {
+    state.cardIngredient = payload;
   },
 };
 
@@ -54,6 +58,7 @@ export const {
   actionCategoryFilter,
   actionCardCategories,
   actionFilterIngredients,
+  actionCardIngredients,
 } = slice.actions;
 
 export default slice.reducer;

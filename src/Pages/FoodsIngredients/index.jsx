@@ -1,9 +1,13 @@
+import { useDispatch } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { fetchIngredients, filterByIngredients } from '../../services/apiFilter';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
-import { actionFilterIngredients } from '../../redux/slices/filterSlice';
+import {
+  actionFilterIngredients,
+  actionCardIngredients,
+} from '../../redux/slices/filterSlice';
 import './index.css';
 
 function FoodsIngredients() {
@@ -13,6 +17,8 @@ function FoodsIngredients() {
     location: { pathname },
     push,
   } = useHistory();
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (ingredientsList.length !== 0) return setLoading(false);
@@ -33,10 +39,8 @@ function FoodsIngredients() {
   const setCardsIngredients = async (ingredient) => {
     const type = pathname.split('/')[2];
     const data = await filterByIngredients(ingredient, type);
-    console.log({ data });
-    console.log({ type });
-    console.log({ ingredient });
-    actionFilterIngredients(data);
+    dispatch(actionFilterIngredients(data));
+    dispatch(actionCardIngredients(true));
     push('/foods');
   };
 
@@ -52,15 +56,17 @@ function FoodsIngredients() {
             <button
               type="button"
               key={ index }
-              onClick={ () => setCardsIngredients(ingredient.strMeal) }
+              onClick={ () => setCardsIngredients(ingredient.strIngredient) }
             >
               <li className="ingrediets-item" data-testid={ `${index}-ingredient-card` }>
                 <img
-                  src={ ingredient.strMealThumb }
+                  src={ `https://www.themealdb.com/images/ingredients/${ingredient.strIngredient}-Small.png` }
                   data-testid={ `${index}-card-img` }
                   alt="IngredientImage"
                 />
-                <strong data-testid={ `${index}-card-name` }>{ingredient.strMeal}</strong>
+                <strong data-testid={ `${index}-card-name` }>
+                  {ingredient.strIngredient}
+                </strong>
               </li>
             </button>
           ))}
