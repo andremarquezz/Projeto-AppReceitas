@@ -11,6 +11,8 @@ import haertIcon from '../../images/whiteHeartIcon.svg';
 import leftIcon from '../../images/left.svg';
 import './index.css';
 
+const copy = require('clipboard-copy');
+
 const youtubeVidConfig = (url) => {
   const link = url.split('=')[1];
   return `https://www.youtube.com/embed/${link}`;
@@ -25,7 +27,7 @@ const BUTTON_STATE = {
 export default function Details() {
   const [recipeDetails, setRecipeDetails] = useState('');
   const [detailsType, setDetailsType] = useState('');
-  const [loading, setLoading] = useState(true);
+  const [copied, setCopied] = useState(false);
   const [buttonControl, setButtonControl] = useState(BUTTON_STATE);
 
   const {
@@ -39,19 +41,11 @@ export default function Details() {
   useEffect(() => {
     const detailsData = async () => {
       const data = await apiDetails(location, id);
-
       setDetailsType(Object.entries(data)[0][0]);
       setRecipeDetails(data);
     };
     detailsData();
   }, [location, id]);
-
-  useEffect(() => {
-    if (detailsType !== '') {
-      return setLoading(false);
-    }
-    return setLoading(true);
-  }, [detailsType]);
 
   const createIngredientArray = (type) => {
     const detailsObj = recipeDetails[type][0];
@@ -65,7 +59,6 @@ export default function Details() {
         : false));
 
     const ingredientsItem = newIngredients.filter((item) => item !== false);
-
     return ingredientsItem;
   };
 
@@ -73,7 +66,7 @@ export default function Details() {
     if (split[1] === 'foods') {
       return push('/foods');
     }
-    return push('/drinks');
+    push('/drinks');
   };
 
   useEffect(() => {
@@ -92,18 +85,33 @@ export default function Details() {
     push(`/${location}/${id}/in-progress`);
   };
 
-  const btnShare = () => {
-    navigator.clipboard.writeText(`http://localhost:3000${pathname}`);
-    global.alert('Link copied!');
+  const copiedOnScreenTimer = () => {
+    const TEXT_TIMER = 5000;
+    setCopied(true);
+    const textTimeout = setTimeout(() => {
+      setCopied(false);
+      clearTimeout(textTimeout);
+    }, TEXT_TIMER);
+  };
+
+  const copyToClipboard = () => {
+    copy(`http://localhost:3000/${split[1]}/${split[2]}`);
+    copiedOnScreenTimer();
   };
 
   const btnFavorite = () => {
+    const button = {
+      state: true,
+      text: 'Start Recipe',
+      favorite: !buttonControl.favorite,
+    };
     favoriteStoreControl(recipeDetails, detailsType, id);
+    setButtonControl(button);
   };
 
   return (
     <div className="details-container">
-      {!loading && (
+      {detailsType && recipeDetails && detailsType !== '' && (
         <>
           <div className="card-details-header">
             <img
@@ -128,22 +136,17 @@ export default function Details() {
                   : recipeDetails.drinks[0].strDrink}
               </h1>
 
-              <button
-                type="button"
-                onClick={ () => btnShare() }
-              >
+              <button type="button" onClick={ () => copyToClipboard() }>
                 <img
                   className="icons-action"
                   src={ shareIcon }
                   alt="IconShare"
                   data-testid="share-btn"
                 />
+                {copied && <h1>Link copied!</h1>}
               </button>
 
-              <button
-                type="button"
-                onClick={ () => btnFavorite() }
-              >
+              <button type="button" onClick={ () => btnFavorite() }>
                 <img
                   src={ buttonControl.favorite ? blackHeartIcon : haertIcon }
                   alt="IconHaert"
@@ -160,11 +163,8 @@ export default function Details() {
             <div className="card-details-ingredients">
               <h4>Ingredients</h4>
               <ul className="ingredients-list">
-                {createIngredientArray(detailsType).map((item, index) => (
-                  <li
-                    key={ index }
-                    data-testid={ `${index}-ingredient-name-and-measure` }
-                  >
+                {createIngredientArray(detailsType).map((item, i) => (
+                  <li key={ i } data-testid={ `${i}-ingredient-name-and-measure` }>
                     {item}
                   </li>
                 ))}
@@ -210,7 +210,7 @@ export default function Details() {
               data-testid="start-recipe-btn"
               onClick={ () => btnStartRecipe() }
             >
-              { buttonControl.text }
+              {buttonControl.text}
             </button>
           </div>
         </>

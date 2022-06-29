@@ -23,7 +23,6 @@ export default function favoritesControl(data, mainKey, id) {
   const recipeKey = (mainKey === 'meals')
     ? 'Meal' : 'Drink';
   const easyData = data[mainKey][0];
-  console.log('favoriteStorage', data[mainKey][0]);
 
   const checkStorage = getLocalStorage('favoriteRecipes');
   const newStorage = favoriteCreate(easyData, recipeKey, id);

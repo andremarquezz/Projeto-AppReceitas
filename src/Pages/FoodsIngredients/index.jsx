@@ -30,8 +30,6 @@ function FoodsIngredients() {
     getByIngredients();
   }, []);
 
-  console.log(ingredientsList);
-
   const setCardsIngredients = async (ingredient) => {
     const type = pathname.split('/')[2];
     const data = await filterByIngredients(ingredient, type);
