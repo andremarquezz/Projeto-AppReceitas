@@ -3,50 +3,89 @@ import { useHistory } from 'react-router-dom';
 import apiDetails from '../../services/apiDetails';
 import RecomedeCard from '../RecomedeCard';
 import shareIcon from '../../images/shareIcon.svg';
-import haertIcon from '../../images/blackHeartIcon.svg';
+import blackHeartIcon from '../../images/blackHeartIcon.svg';
+import haertIcon from '../../images/whiteHeartIcon.svg';
 import leftIcon from '../../images/left.svg';
 import './index.css';
 import IngredientArray from '../IngredientArray';
 import createDoneRecipe from '../../services/createDoneRecipe';
 import { addDoneRecipe } from '../../services/doneRecipes';
+import localStorageRecipeVerify from '../../services/localStorageRecipeVerify';
+import favoriteStoreControl from '../../services/favoriteStoreControl';
+
+const BUTTON_STATE = {
+  state: true,
+  text: 'Start Recipe',
+  favorite: false,
+};
 
 const youtubeVidConfig = (url) => {
   const link = url.split('=')[1];
   return `https://www.youtube.com/embed/${link}`;
 };
 
-export default function DetailsInProgress() {
-  const [recipeDetails, setRecipeDetails] = useState({});
-  const [detailsType, setDetailsType] = useState('');
-  const [loading, setLoading] = useState(true);
-  const [buttonDisabled, setButtonDisabled] = useState(true);
+const copy = require('clipboard-copy');
 
+export default function DetailsInProgress() {
+  const [copied, setCopied] = useState(false);
+  const [recipeDetails, setRecipeDetails] = useState('');
+  const [detailsType, setDetailsType] = useState('');
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+  const [buttonControl, setButtonControl] = useState(BUTTON_STATE);
   const {
     location: { pathname },
     push,
   } = useHistory();
-
+  const split = pathname.split('/');
   useEffect(() => {
-    const split = pathname.split('/');
     const detailsData = async () => {
       const data = await apiDetails(split[1], split[2]);
       setDetailsType(Object.entries(data)[0][0]);
       setRecipeDetails(data);
     };
     detailsData();
-  }, [pathname]);
+  }, [pathname, split]);
+  const location = split[1];
+  const id = split[2];
 
   useEffect(() => {
-    if (detailsType !== '') {
-      return setLoading(false);
-    }
-    return setLoading(true);
-  }, [detailsType]);
+    const productData = localStorageRecipeVerify(location, id);
+
+    setButtonControl({
+      state: productData.recipeDone,
+      text: productData.recipeInProgress,
+      favorite: productData.recipefavorite,
+    });
+  }, [id, location]);
 
   const goToDoneRecipes = () => {
     const recipe = createDoneRecipe(recipeDetails, detailsType, pathname.split('/'));
     addDoneRecipe(recipe);
     push('/done-recipes');
+  };
+
+  const copiedOnScreenTimer = () => {
+    const TEXT_TIMER = 5000;
+    setCopied(true);
+    const textTimeout = setTimeout(() => {
+      setCopied(false);
+      clearTimeout(textTimeout);
+    }, TEXT_TIMER);
+  };
+
+  const copyToClipboard = () => {
+    copy(`http://localhost:3000/${split[1]}/${split[2]}`);
+    copiedOnScreenTimer();
+  };
+
+  const btnFavorite = () => {
+    const button = {
+      state: true,
+      text: 'Start Recipe',
+      favorite: !buttonControl.favorite,
+    };
+    favoriteStoreControl(recipeDetails, detailsType, id);
+    setButtonControl(button);
   };
 
   const createIngredientArray = (type) => {
@@ -66,7 +105,6 @@ export default function DetailsInProgress() {
   };
 
   const handleComeBack = () => {
-    const split = pathname.split('/');
     if (split[1] === 'foods') {
       return push('/foods');
     }
@@ -75,7 +113,7 @@ export default function DetailsInProgress() {
 
   return (
     <div className="details-container">
-      {!loading && (
+      {detailsType && recipeDetails !== '' && detailsType !== '' && (
         <>
           <div className="card-details-header">
             <img
@@ -99,10 +137,18 @@ export default function DetailsInProgress() {
                   ? recipeDetails.meals[0].strMeal
                   : recipeDetails.drinks[0].strDrink}
               </h1>
-              <div className="icons-action">
+
+              <button type="button" onClick={ () => copyToClipboard() }>
                 <img src={ shareIcon } alt="IconShare" data-testid="share-btn" />
-                <img src={ haertIcon } alt="IconHaert" data-testid="favorite-btn" />
-              </div>
+              </button>
+              {copied && <h1>Link copied!</h1>}
+              <button type="button" onClick={ () => btnFavorite() }>
+                <img
+                  src={ buttonControl.favorite ? blackHeartIcon : haertIcon }
+                  alt="IconHaert"
+                  data-testid="favorite-btn"
+                />
+              </button>
             </div>
             <strong className="currency" data-testid="recipe-category">
               {detailsType === 'meals'

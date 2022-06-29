@@ -12,8 +12,11 @@ function ScreenDoneRecipes() {
   const [filter, setFilter] = useState('all');
   const [copied, setCopied] = useState(NO_COPY);
 
-  const doneRecipes = getDoneRecipes()
-    .filter((recipe) => (filter === 'all' || recipe.type === filter));
+  const getRecipes = getDoneRecipes() || [];
+
+  const doneRecipes = getRecipes.filter(
+    (recipe) => filter === 'all' || recipe.type === filter,
+  );
 
   const copiedOnScreenTimer = (id) => {
     const TEXT_TIMER = 5000;
