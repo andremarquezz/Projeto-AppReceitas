@@ -3,7 +3,10 @@ import { getLocalStorage } from './LocalStorage';
 const verifyRecipeinProgress = (storageData, type, id) => {
   const localType = type === 'foods'
     ? 'meals' : 'cocktails';
+
+  if (!storageData[localType]) { return false; }
   const myRecipes = Object.keys(storageData[localType]);
+
   return myRecipes.some((ids) => ids === id);
 };
 
