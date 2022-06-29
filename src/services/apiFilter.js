@@ -43,6 +43,17 @@ export default function apiFilter(filter, type, search) {
   }
 }
 
+export const fetchIngredients = (type) => {
+  switch (type) {
+  case 'meals':
+    return fetchData('https://www.themealdb.com/api/json/v1/1/list.php?i=list');
+  case 'drinks':
+    return fetchData('hwww.thecocktaildb.com/api/json/v1/1/list.php?i=list');
+  default:
+    return null;
+  }
+};
+
 export const categoryFilter = (category, type) => {
   switch (type) {
   case 'meals':

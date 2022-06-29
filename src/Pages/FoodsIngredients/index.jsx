@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import apiFilter, { filterByIngredients } from '../../services/apiFilter';
+import { fetchIngredients, filterByIngredients } from '../../services/apiFilter';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import { actionFilterIngredients } from '../../redux/slices/filterSlice';
 import './index.css';
-
-const MAX_LIST_INGREDIENTS = 12;
 
 function FoodsIngredients() {
   const [ingredientsList, setIngredientsList] = useState([]);
@@ -22,14 +20,17 @@ function FoodsIngredients() {
   }, [ingredientsList]);
 
   useEffect(() => {
+    const MAX_LIST_INGREDIENTS = 12;
     const getByIngredients = async () => {
-      const response = await apiFilter('meals', 'ingredient', '');
+      const response = await fetchIngredients('meals');
       const ingredients = response.meals.slice(0, MAX_LIST_INGREDIENTS);
       return setIngredientsList(ingredients);
     };
 
     getByIngredients();
   }, []);
+
+  console.log(ingredientsList);
 
   const setCardsIngredients = async (ingredient) => {
     const type = pathname.split('/')[2];

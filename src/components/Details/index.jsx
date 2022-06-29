@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import apiDetails from '../../services/apiDetails';
+import localStorageRecipeVerify from '../../services/localStorageRecipeVerify';
+import favoriteStoreControl from '../../services/favoriteStoreControl';
+import inProgressStoreControl from '../../services/inProgressStoreControl';
 import RecomedeCard from '../RecomedeCard';
 import shareIcon from '../../images/shareIcon.svg';
-import haertIcon from '../../images/blackHeartIcon.svg';
+import blackHeartIcon from '../../images/blackHeartIcon.svg';
+import haertIcon from '../../images/whiteHeartIcon.svg';
 import leftIcon from '../../images/left.svg';
 import './index.css';
 
@@ -12,26 +16,35 @@ const youtubeVidConfig = (url) => {
   return `https://www.youtube.com/embed/${link}`;
 };
 
+const BUTTON_STATE = {
+  state: true,
+  text: 'Start Recipe',
+  favorite: false,
+};
+
 export default function Details() {
   const [recipeDetails, setRecipeDetails] = useState('');
   const [detailsType, setDetailsType] = useState('');
   const [loading, setLoading] = useState(true);
+  const [buttonControl, setButtonControl] = useState(BUTTON_STATE);
 
   const {
     location: { pathname },
     push,
   } = useHistory();
 
+  const split = pathname.split('/');
+  const location = split[1];
+  const id = split[2];
   useEffect(() => {
-    const split = pathname.split('/');
     const detailsData = async () => {
-      const data = await apiDetails(split[1], split[2]);
+      const data = await apiDetails(location, id);
 
       setDetailsType(Object.entries(data)[0][0]);
       setRecipeDetails(data);
     };
     detailsData();
-  }, [pathname]);
+  }, [location, id]);
 
   useEffect(() => {
     if (detailsType !== '') {
@@ -57,11 +70,35 @@ export default function Details() {
   };
 
   const handleComeBack = () => {
-    const split = pathname.split('/');
     if (split[1] === 'foods') {
       return push('/foods');
     }
     return push('/drinks');
+  };
+
+  useEffect(() => {
+    const productData = localStorageRecipeVerify(location, id);
+
+    setButtonControl({
+      state: productData.recipeDone,
+      text: productData.recipeInProgress,
+      favorite: productData.recipefavorite,
+    });
+  }, [id, location]);
+
+  const btnStartRecipe = () => {
+    const ingredients = createIngredientArray(detailsType);
+    inProgressStoreControl(ingredients, detailsType, id);
+    push(`/${location}/${id}/in-progress`);
+  };
+
+  const btnShare = () => {
+    navigator.clipboard.writeText(`http://localhost:3000${pathname}`);
+    global.alert('Link copied!');
+  };
+
+  const btnFavorite = () => {
+    favoriteStoreControl(recipeDetails, detailsType, id);
   };
 
   return (
@@ -90,10 +127,30 @@ export default function Details() {
                   ? recipeDetails.meals[0].strMeal
                   : recipeDetails.drinks[0].strDrink}
               </h1>
-              <div className="icons-action">
-                <img src={ shareIcon } alt="IconShare" data-testid="share-btn" />
-                <img src={ haertIcon } alt="IconHaert" data-testid="favorite-btn" />
-              </div>
+
+              <button
+                type="button"
+                onClick={ () => btnShare() }
+              >
+                <img
+                  className="icons-action"
+                  src={ shareIcon }
+                  alt="IconShare"
+                  data-testid="share-btn"
+                />
+              </button>
+
+              <button
+                type="button"
+                onClick={ () => btnFavorite() }
+              >
+                <img
+                  src={ buttonControl.favorite ? blackHeartIcon : haertIcon }
+                  alt="IconHaert"
+                  data-testid="favorite-btn"
+                  className="icons-action"
+                />
+              </button>
             </div>
             <strong className="currency" data-testid="recipe-category">
               {detailsType === 'meals'
@@ -151,9 +208,9 @@ export default function Details() {
               type="button"
               className="btn-start-recipies"
               data-testid="start-recipe-btn"
-              onClick={ () => push(`/${split[1]}/${split[2]}/in-progress`) }
+              onClick={ () => btnStartRecipe() }
             >
-              Start Recipies
+              { buttonControl.text }
             </button>
           </div>
         </>
