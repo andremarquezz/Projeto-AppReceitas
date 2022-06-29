@@ -10,6 +10,7 @@ import fetchCategories from '../../services/apiCategories';
 import { categoryFilter } from '../../services/apiFilter';
 import CardByCategory from '../CardByCategory';
 import CardByIngredients from '../CardByIngredients';
+import CardByNationalities from '../CardByNationalities';
 import CardMealsOrDrinks from '../CardMealsOrDrinks';
 
 import './index.css';
@@ -20,6 +21,7 @@ function ListRecipies() {
   const [lastCategory, setlastCategory] = useState('');
   const cardCategories = useSelector(({ filters }) => filters.cardCategories);
   const cardIngredients = useSelector(({ filters }) => filters.cardIngredient);
+  const cardNationalities = useSelector(({ filters }) => filters.cardNationalities);
   const { pathname } = useLocation();
   const maxCategory = 5;
 
@@ -83,7 +85,15 @@ function ListRecipies() {
         {cardIngredients ? (
           <CardByIngredients />
         ) : (
-          <div>{cardCategories ? <CardByCategory /> : <CardMealsOrDrinks />}</div>
+          <div>
+            {cardCategories ? (
+              <CardByCategory />
+            ) : (
+              <div>
+                {cardNationalities ? <CardByNationalities /> : <CardMealsOrDrinks />}
+              </div>
+            )}
+          </div>
         )}
       </div>
     </div>
