@@ -15,6 +15,20 @@ function FoodsNationalities() {
           <option>Canada</option>
         </select>
       </div>
+      <div className="cards-nationality-list">
+        <div className="card-item">
+          <img src="https://www.themealdb.com/images/media/meals/n3xxd91598732796.jpg" alt="ImageItem" />
+          <srong>hrhrrh</srong>
+        </div>
+        <div className="card-item">
+          <img src="https://www.themealdb.com/images/media/meals/n3xxd91598732796.jpg" alt="ImageItem" />
+          <srong>hrhrrh</srong>
+        </div>
+        <div className="card-item">
+          <img src="https://www.themealdb.com/images/media/meals/n3xxd91598732796.jpg" alt="ImageItem" />
+          <srong>hrhrrh</srong>
+        </div>
+      </div>
       <Footer />
     </div>
   );

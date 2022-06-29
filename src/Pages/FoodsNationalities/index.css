@@ -14,3 +14,21 @@
   outline: none;
   padding-left: 10px;
 }
+
+.cards-nationality-list {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 20px;
+  width: 100%;
+}
+
+.card-item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.card-item img {
+  width: 100%;
+}
