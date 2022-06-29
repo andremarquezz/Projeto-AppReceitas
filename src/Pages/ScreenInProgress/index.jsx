@@ -1,10 +1,10 @@
 import React from 'react';
-import Details from '../../components/Details';
+import DetailsInProgress from '../../components/DetailsInProgress';
 
 function ScreenInProgress() {
   return (
     <div>
-      <Details />
+      <DetailsInProgress />
     </div>
   );
 }

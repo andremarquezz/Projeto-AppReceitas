@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './index.css';
 import Header from '../../components/Header';
 import shareIcon from '../../images/shareIcon.svg';
+import { getDoneRecipes } from '../../services/doneRecipes';
 
 const copy = require('clipboard-copy');
 
@@ -10,30 +11,8 @@ function ScreenDoneRecipes() {
   const [filter, setFilter] = useState('all');
   const [copied, setCopied] = useState(false);
 
-  const doneRecipes = [
-    {
-      id: '52771',
-      type: 'food',
-      nationality: 'Italian',
-      category: 'Vegetarian',
-      alcoholicOrNot: '',
-      name: 'Spicy Arrabiata Penne',
-      image: 'https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg',
-      doneDate: '23/06/2020',
-      tags: ['Pasta', 'Curry'],
-    },
-    {
-      id: '178319',
-      type: 'drink',
-      nationality: '',
-      category: 'Cocktail',
-      alcoholicOrNot: 'Alcoholic',
-      name: 'Aquamarine',
-      image: 'https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg',
-      doneDate: '23/06/2020',
-      tags: [],
-    },
-  ].filter((recipe) => (filter === 'all' || recipe.type === filter));
+  const doneRecipes = getDoneRecipes()
+    .filter((recipe) => (filter === 'all' || recipe.type === filter));
 
   const copiedOnScreenTimer = () => {
     const TEXT_TIMER = 5000;
@@ -77,7 +56,7 @@ function ScreenDoneRecipes() {
       </div>
       <div>
         {doneRecipes.map((recipe, index) => (
-          <div key="index">
+          <div key={ index }>
             <Link to={ `/${recipe.type}s/${recipe.id}` }>
               <img
                 src={ recipe.image }
