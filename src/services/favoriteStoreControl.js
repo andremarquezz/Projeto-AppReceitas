@@ -1,9 +1,9 @@
 import { getLocalStorage, saveLocalStorage } from './LocalStorage';
 
-const favoriteCreate = (data, key, id) => ({
+const favoriteCreate = (data, key, id, type) => ({
   id,
-  type: key,
-  nationality: data.strArea,
+  type,
+  nationality: data.strArea || '',
   category: data.strCategory || '',
   alcoholicOrNot: data.strAlcoholic || '',
   name: data[`str${key}`],
@@ -20,12 +20,13 @@ const removeFavorite = (storageData, id) => (
 
 //  ====MAIN FUNCTION====//
 export default function favoritesControl(data, mainKey, id) {
+  const type = mainKey === 'meals' ? 'food' : 'drink';
   const recipeKey = (mainKey === 'meals')
     ? 'Meal' : 'Drink';
   const easyData = data[mainKey][0];
 
   const checkStorage = getLocalStorage('favoriteRecipes');
-  const newStorage = favoriteCreate(easyData, recipeKey, id);
+  const newStorage = favoriteCreate(easyData, recipeKey, id, type);
 
   if (!checkStorage) { return saveLocalStorage('favoriteRecipes', [newStorage]); }
   const checkedData = favoriteCheck(checkStorage, id);

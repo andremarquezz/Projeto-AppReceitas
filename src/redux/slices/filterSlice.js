@@ -9,6 +9,7 @@ const INITIAL_STATE = {
   cardCategories: false,
   dataIngredient: false,
   cardIngredient: false,
+  cardNationalities: false,
 };
 
 const reducers = {
@@ -41,6 +42,9 @@ const reducers = {
   },
   actionCardIngredients: (state, { payload }) => {
     state.cardIngredient = payload;
+  },
+  actionCardNationalities: (state, { payload }) => {
+    state.cardNationalities = payload;
   },
 };
 

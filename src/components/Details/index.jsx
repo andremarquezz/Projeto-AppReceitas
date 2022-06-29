@@ -111,7 +111,7 @@ export default function Details() {
 
   return (
     <div className="details-container">
-      {detailsType && recipeDetails && detailsType !== '' && (
+      {detailsType && recipeDetails !== '' && detailsType !== '' && (
         <>
           <div className="card-details-header">
             <img
