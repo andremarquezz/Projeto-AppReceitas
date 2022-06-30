@@ -27,10 +27,9 @@ export default function favoritesControl(data, mainKey, id) {
 
   const checkStorage = getLocalStorage('favoriteRecipes');
   const newStorage = favoriteCreate(easyData, recipeKey, id, type);
-
   if (!checkStorage) { return saveLocalStorage('favoriteRecipes', [newStorage]); }
-  const checkedData = favoriteCheck(checkStorage, id);
 
+  const checkedData = favoriteCheck(checkStorage, id);
   if (checkedData) {
     return saveLocalStorage('favoriteRecipes', [...checkStorage, newStorage]);
   }
