@@ -20,8 +20,6 @@ function FoodsIngredients() {
 
   const dispatch = useDispatch();
 
-  console.log(ingredientsList);
-
   useEffect(() => {
     if (ingredientsList.length !== 0) return setLoading(false);
     return setLoading(true);

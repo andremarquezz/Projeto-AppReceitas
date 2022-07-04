@@ -1,31 +1,57 @@
 import React, { useEffect, useState } from 'react';
-import CardMealsOrDrinks from '../../components/CardMealsOrDrinks';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import CardByNationalities from '../../components/CardByNationalities';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
-import fetchNationalities from '../../services/apiNationalities';
-
+import { actionDataNationalities } from '../../redux/slices/filterSlice';
+import { nameNationalities, foodNationalities } from '../../services/apiNationalities';
 import './index.css';
 
+const API = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
+const MAX_LENGTH = 12;
+const MAX_LENGTH_CATEGORY = 10;
+
 function FoodsNationalities() {
+  const dispatch = useDispatch();
+  const [nationalities, setNationalities] = useState([]);
   const [data, setData] = useState([]);
+  const [byNationality, setByNationality] = useState(false);
 
   useEffect(() => {
-    const fetch = async () => {
-      const { meals } = await fetchNationalities();
-      setData(meals);
+    const fetchNameNationalities = async () => {
+      const { meals } = await nameNationalities();
+      setNationalities(meals);
     };
-    fetch();
+    fetchNameNationalities();
+    const fetchFoodsAll = async () => {
+      const newData = await (await fetch(API)).json();
+      setData(newData);
+    };
+    fetchFoodsAll();
   }, []);
+
+  const fetchFoodsNationalities = async (value) => {
+    const newData = await foodNationalities(value);
+    dispatch(actionDataNationalities(newData));
+    setByNationality(true);
+  };
+
+  console.log(data);
 
   return (
     <div className="foods-nationalit-container">
-      {data.length > 0 && (
+      {nationalities.length > 0 && (
         <>
           <Header buttonSearch />
           <div className="foods-nationalit-content">
             <strong>Filter</strong>
-            <select data-testid="explore-by-nationality-dropdown">
-              {data.map(({ strArea }, i) => (
+            <select
+              data-testid="explore-by-nationality-dropdown"
+              onChange={ ({ target }) => fetchFoodsNationalities(target.value) }
+            >
+              <option onChange={ () => setByNationality(false) }>All</option>
+              {nationalities.map(({ strArea }, i) => (
                 <option data-testid={ `${strArea}-option` } key={ i }>
                   {strArea}
                 </option>
@@ -33,14 +59,29 @@ function FoodsNationalities() {
             </select>
           </div>
           <div className="cards-nationality-list">
-            <CardMealsOrDrinks />
-            <div className="card-item">
-              <img
-                src="https://www.themealdb.com/images/media/meals/n3xxd91598732796.jpg"
-                alt="ImageItem"
-              />
-              <strong>hrhrrh</strong>
-            </div>
+            <ul className="card-list">
+              {byNationality ? (
+                <CardByNationalities />
+              ) : (
+                data.meals
+                && data.meals.slice(0, MAX_LENGTH).map((item, index) => (
+                  <Link to={ `/foods/${item.idMeal}` } key={ index }>
+                    <li className="card-list-item" data-testid={ `${index}-recipe-card` }>
+                      <img
+                        src={ item.strMealThumb }
+                        alt="FoodsImage"
+                        data-testid={ `${index}-card-img` }
+                      />
+                      <strong data-testid={ `${index}-card-name` }>{item.strMeal}</strong>
+                      <div className="card-item-info">
+                        <span>{item.strCategory.substr(0, MAX_LENGTH_CATEGORY)}</span>
+                        <span className="coutry">{item.strArea}</span>
+                      </div>
+                    </li>
+                  </Link>
+                ))
+              )}
+            </ul>
           </div>
           <Footer />
         </>
