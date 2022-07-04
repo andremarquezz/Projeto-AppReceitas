@@ -1,0 +1,127 @@
+.filters-favorites {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 10px 20px;
+}
+
+.done-description-filter, .done-description-items {
+  padding: 20px;
+}
+
+.done-recipies-container {
+  width: 100%;
+}
+
+.filters-done {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 0 20px;
+}
+
+.filters-done input {
+  background: rgb(168, 168, 211);
+  border: 0;
+  border-radius: 4px;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  height: 35px;
+}
+
+.done-recipies-item {
+  background: white;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  display: flex;
+  gap: 5px;
+  height: 130px;
+  padding: 20px;
+}
+
+.done-recipies-item img {
+  border-radius: 4px;
+  width: 100px;
+}
+
+.icon-share {
+  background: none;
+  border: none;
+}
+
+.icon-share img {
+  width: 24px;
+}
+
+.card-done-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 20px;
+}
+
+.done-card-body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.card-body-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.card-body-header p {
+  font-size: 14px;
+}
+
+.card-body-header strong {
+  font-size: 13px;
+}
+
+.horizontal-name {
+  margin-top: -10px;
+}
+
+.done-action {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tags {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-share {
+  align-items: center;
+  background: white;
+  display: flex;
+  gap: 15px;
+  height: 45px;
+  justify-content: flex-end;
+  margin-top: -9px;
+}
+
+.btn-share strong {
+  background: rgb(85, 114, 207);
+  border-radius: 4px;
+  color: white;
+  font-size: 10px;
+  margin-top: 3px;
+  padding: 5px;
+}
+
+.btn-share button {
+  background: none;
+  border: none;
+  margin-top: 2px;
+  padding: 15px;
+  width: 50px;
+}
+
+.btn-share img {
+  width: 20px;
+}

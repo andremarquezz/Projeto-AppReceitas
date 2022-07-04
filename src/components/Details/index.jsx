@@ -80,8 +80,7 @@ export default function Details() {
   }, [id, location]);
 
   const btnStartRecipe = () => {
-    const ingredients = createIngredientArray(detailsType);
-    inProgressStoreControl(ingredients, detailsType, id);
+    inProgressStoreControl(recipeDetails, detailsType, id);
     push(`/${location}/${id}/in-progress`);
   };
 
@@ -95,7 +94,7 @@ export default function Details() {
   };
 
   const copyToClipboard = () => {
-    copy(`http://localhost:3000/${split[1]}/${split[2]}`);
+    copy(`http://localhost:3000/${location}/${id}`);
     copiedOnScreenTimer();
   };
 
