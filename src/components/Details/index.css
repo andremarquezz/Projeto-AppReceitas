@@ -64,8 +64,7 @@
 }
 
 .icons-action {
-  display: flex;
-  gap: 25px;
+  border: none;
 }
 
 .card-details-header .icons-action img {
