@@ -21,7 +21,8 @@ function Login() {
     return hasErrors;
   };
 
-  const handleLocalStorage = async () => {
+  const handleLocalStorage = async (event) => {
+    event.preventDefault();
     saveLocalStorage('mealsToken', 1);
     saveLocalStorage('cocktailsToken', 1);
     saveLocalStorage('user', { email });
