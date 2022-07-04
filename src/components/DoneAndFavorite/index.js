@@ -2,34 +2,32 @@ import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import './index.css';
 import shareIcon from '../../images/shareIcon.svg';
+import blackHeart from '../../images/blackHeartIcon.svg';
 import { getDoneRecipes } from '../../services/doneRecipes';
 import { getLocalStorage } from '../../services/LocalStorage';
+import { deleteFavoriteRecipe } from '../../services/favoriteStoreControl';
 
 const copy = require('clipboard-copy');
 
 const NO_COPY = -1;
 const checkLocation = (path) => path.split('/')[1];
 
+const favoritePage = 'favorite-recipes';
+
 export default function DoneAndFavorite() {
   const [filter, setFilter] = useState('all');
   const [copied, setCopied] = useState(NO_COPY);
   const [displayMessage, setDisplayMessage] = useState('');
   const [myRecipes, setMyRecipes] = useState([]);
+  const [reload, setReload] = useState(false);
 
   const { location: { pathname } } = useHistory();
   const myLocation = checkLocation(pathname);
 
-  // const recipeStorage = myLocation === 'favorite-recipes'
-  //   ? getLocalStorage('favoriteRecipes') : getDoneRecipes();
-  // const getRecipes = recipeStorage || [];
-
-  // const myRecipes = getRecipes.filter(
-  //   (recipe) => filter === 'all' || recipe.type === filter,
-  // );
   console.log(myRecipes);
 
   useEffect(() => {
-    const recipeStorage = myLocation === 'favorite-recipes'
+    const recipeStorage = myLocation === favoritePage
       ? getLocalStorage('favoriteRecipes') : getDoneRecipes();
     if (recipeStorage) {
       const recipeFiltered = recipeStorage.filter(
@@ -37,7 +35,8 @@ export default function DoneAndFavorite() {
       );
       setMyRecipes(recipeFiltered);
     }
-  }, [myLocation, filter]);
+    setReload(false);
+  }, [myLocation, filter, reload]);
 
   const copiedOnScreenTimer = (id) => {
     const TEXT_TIMER = 5000;
@@ -49,13 +48,19 @@ export default function DoneAndFavorite() {
   };
 
   useEffect(() => {
-    if (myLocation === 'favorite-recipes') { setDisplayMessage('Receitas Favoritas'); }
+    if (myLocation === favoritePage) { setDisplayMessage('Receitas Favoritas'); }
     if (myLocation === 'done-recipes') { setDisplayMessage('Receitas Concluídas'); }
+    console.log('testando');
   }, [myLocation]);
 
   const copyToClipboard = (type, id) => {
     copy(`http://localhost:3000/${type}/${id}`);
     copiedOnScreenTimer(id);
+  };
+
+  const favoriteRemove = (id) => {
+    deleteFavoriteRecipe(id);
+    setReload(true);
   };
 
   // ====//====RETURN====//====//
@@ -93,7 +98,7 @@ export default function DoneAndFavorite() {
       <div className="card-done-content">
         {myRecipes.map((recipe, index) => (
           <>
-            <div key={ index + recipe } className="done-recipies-item">
+            <div key={ recipe.id } className="done-recipies-item">
               <div className="done-card-img">
                 <Link to={ `/${recipe.type}s/${recipe.id}` }>
                   <img
@@ -127,7 +132,10 @@ export default function DoneAndFavorite() {
                 <div className="done-action">
                   <div className="tags">
                     {recipe.tags && recipe.tags.map((tag, i) => (
-                      <p key={ tag + i } data-testid={ `${index}-${tag}-horizontal-tag` }>
+                      <p
+                        key={ recipe.id + tag + i }
+                        data-testid={ `${index}-${tag}-horizontal-tag` }
+                      >
                         {tag}
                       </p>
                     ))}
@@ -138,13 +146,24 @@ export default function DoneAndFavorite() {
             <div className="btn-share">
               {copied === recipe.id && <strong>Link copied!</strong>}
               <input
-                type="button"
+                type="image"
                 className="btn-share"
                 onClick={ () => copyToClipboard(`${recipe.type}s`, recipe.id) }
                 data-testid={ `${index}-horizontal-share-btn` }
                 src={ shareIcon }
                 alt="IconShare"
               />
+              {myLocation === favoritePage
+              && (
+                <input
+                  type="image"
+                  className="btn-share"
+                  onClick={ () => favoriteRemove(recipe.id) }
+                  data-testid={ `${index}-horizontal-favorite-btn` }
+                  src={ blackHeart }
+                  alt="IconHeart"
+                />
+              )}
             </div>
           </>
         ))}

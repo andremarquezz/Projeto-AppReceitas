@@ -37,3 +37,9 @@ export default function favoritesControl(data, mainKey, id) {
   const favoriteRemoved = removeFavorite(checkStorage, id);
   saveLocalStorage('favoriteRecipes', [...favoriteRemoved]);
 }
+
+export const deleteFavoriteRecipe = (id) => {
+  const checkStorage = getLocalStorage('favoriteRecipes');
+  const favoriteRemoved = removeFavorite(checkStorage, id);
+  saveLocalStorage('favoriteRecipes', [...favoriteRemoved]);
+};
