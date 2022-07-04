@@ -2,7 +2,7 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Login from '../Pages/Login';
-import renderWithRouter from './RenderWithRouter';
+import renderWithRouter from './Helpers/RenderWithRouter';
 import {
   emailInputTestId,
   passwordInputTestId,
@@ -11,7 +11,7 @@ import {
   correctPassword,
   wrongEmail,
   wrongPassword,
-} from './testData';
+} from './Data/loginTestData';
 
 describe('Teste da tela de Login', () => {
   it('Testa se pagina inicial  é renderizada corretamente', () => {
@@ -21,7 +21,7 @@ describe('Teste da tela de Login', () => {
 
   it('Verifica se existe na pagina um botao `Enter` e campos de Email e Senha', () => {
     renderWithRouter(<Login />);
-    const inputEmail = screen.getByTestId(emailInputTestId);
+    const inputEmail = screen.queryByTestId(emailInputTestId);
     const inputPassword = screen.getByTestId(passwordInputTestId);
     const button = screen.getByTestId(loginButtonTestId);
 
