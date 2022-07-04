@@ -32,12 +32,13 @@ function FoodsNationalities() {
   }, []);
 
   const fetchFoodsNationalities = async (value) => {
+    if (value === 'All') {
+      return setByNationality(false);
+    }
     const newData = await foodNationalities(value);
     dispatch(actionDataNationalities(newData));
     setByNationality(true);
   };
-
-  console.log(data);
 
   return (
     <div className="foods-nationalit-container">
@@ -50,7 +51,7 @@ function FoodsNationalities() {
               data-testid="explore-by-nationality-dropdown"
               onChange={ ({ target }) => fetchFoodsNationalities(target.value) }
             >
-              <option onChange={ () => setByNationality(false) }>All</option>
+              <option data-testid="All-option">All</option>
               {nationalities.map(({ strArea }, i) => (
                 <option data-testid={ `${strArea}-option` } key={ i }>
                   {strArea}
