@@ -10,6 +10,7 @@ const INITIAL_STATE = {
   dataIngredient: false,
   cardIngredient: false,
   cardNationalities: false,
+  dataNationalities: [],
 };
 
 const reducers = {
@@ -46,6 +47,9 @@ const reducers = {
   actionCardNationalities: (state, { payload }) => {
     state.cardNationalities = payload;
   },
+  actionDataNationalities: (state, { payload }) => {
+    state.dataNationalities = payload;
+  },
 };
 
 export const slice = createSlice({
@@ -63,6 +67,7 @@ export const {
   actionCardCategories,
   actionFilterIngredients,
   actionCardIngredients,
+  actionDataNationalities,
 } = slice.actions;
 
 export default slice.reducer;

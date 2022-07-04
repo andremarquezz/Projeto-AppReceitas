@@ -24,8 +24,6 @@ export default function DoneAndFavorite() {
   const { location: { pathname } } = useHistory();
   const myLocation = checkLocation(pathname);
 
-  console.log(myRecipes);
-
   useEffect(() => {
     const recipeStorage = myLocation === favoritePage
       ? getLocalStorage('favoriteRecipes') : getDoneRecipes();
@@ -50,7 +48,6 @@ export default function DoneAndFavorite() {
   useEffect(() => {
     if (myLocation === favoritePage) { setDisplayMessage('Receitas Favoritas'); }
     if (myLocation === 'done-recipes') { setDisplayMessage('Receitas Concluídas'); }
-    console.log('testando');
   }, [myLocation]);
 
   const copyToClipboard = (type, id) => {
