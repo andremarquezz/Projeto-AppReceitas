@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { saveLocalStorage } from '../../services/LocalStorage';
 import './index.css';
 
-import loginImage from '../../images/login.svg';
+import loginImage from '../../images/logo.png';
 
 function Login() {
   const history = useHistory();
