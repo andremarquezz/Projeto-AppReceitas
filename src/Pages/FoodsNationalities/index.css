@@ -15,10 +15,11 @@
   padding-left: 10px;
 }
 
-.cards-nationality-list {
+.cards-list {
   display: grid;
   gap: 20px;
   grid-template-columns: repeat(2, 1fr);
+  margin-bottom: 60px;
   padding: 20px;
   width: 100%;
 }

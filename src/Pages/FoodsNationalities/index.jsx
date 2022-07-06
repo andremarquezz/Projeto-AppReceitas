@@ -59,12 +59,11 @@ function FoodsNationalities() {
               ))}
             </select>
           </div>
-          <div className="cards-nationality-list">
-            <ul className="card-list">
-              {byNationality ? (
-                <CardByNationalities />
-              ) : (
-                data.meals
+          <ul className="cards-list">
+            {byNationality ? (
+              <CardByNationalities />
+            ) : (
+              data.meals
                 && data.meals.slice(0, MAX_LENGTH).map((item, index) => (
                   <Link to={ `/foods/${item.idMeal}` } key={ index }>
                     <li className="card-list-item" data-testid={ `${index}-recipe-card` }>
@@ -81,9 +80,8 @@ function FoodsNationalities() {
                     </li>
                   </Link>
                 ))
-              )}
-            </ul>
-          </div>
+            )}
+          </ul>
           <Footer />
         </>
       )}
