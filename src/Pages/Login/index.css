@@ -1,9 +1,10 @@
 .login-container {
   align-items: center;
+  background: #d43f4f;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  justify-content: center;
+  height: 100vh;
+  justify-content: space-around;
   width: 100%;
 }
 
@@ -12,7 +13,6 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  justify-content: center;
   width: 100%;
 }
 
@@ -21,28 +21,42 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  height: 50%;
-  padding-top: 20px;
+  padding: 20px;
   width: 100%;
 }
 
+.login-info strong {
+  color: white;
+  font-weight: 700;
+  max-width: 300px;
+  text-align: center;
+}
+
 .login-info img {
-  max-width: 250px;
-  padding-top: 15px;
+  max-width: 170px;
+  padding-top: 35px;
 }
 
 .form {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  height: 50%;
+  margin-top: 35px;
   padding: 50px 20px;
   width: 100%;
 }
 
+.form h3 {
+  color: white;
+  font-size: 22px;
+}
+
 .form input {
+  background: #bde6cf;
   border: 1px solid #e6e6f0;
   border-radius: 4px;
+  color: black;
+  font-weight: 500;
   height: 50px;
   outline: none;
   padding-left: 15px;
