@@ -140,13 +140,16 @@ export default function Details() {
                 onClick={ () => copyToClipboard() }
                 className="button-share-link"
               >
-                <img
-                  className="icons-action"
-                  src={ shareIcon }
-                  alt="IconShare"
-                  data-testid="share-btn"
-                />
-                {copied && <strong>Link copied!</strong>}
+                {copied ? (
+                  <strong>Link copied!</strong>
+                ) : (
+                  <img
+                    className="icons-action"
+                    src={ shareIcon }
+                    alt="IconShare"
+                    data-testid="share-btn"
+                  />
+                )}
               </button>
 
               <button
