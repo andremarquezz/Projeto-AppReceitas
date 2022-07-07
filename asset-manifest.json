@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ProjetoAppReceitas/static/css/main.e1182480.css",
-    "main.js": "/ProjetoAppReceitas/static/js/main.2bc26388.js",
+    "main.js": "/ProjetoAppReceitas/static/js/main.5e8e1a9e.js",
     "static/media/explore-food-icon.svg": "/ProjetoAppReceitas/static/media/explore-food-icon.fd7c290f826fcd2ba983c3ef415127d7.svg",
     "static/media/explore-drink-icon.svg": "/ProjetoAppReceitas/static/media/explore-drink-icon.0e7b7e13e709750feb85ff93a7c41077.svg",
     "static/media/logo.png": "/ProjetoAppReceitas/static/media/logo.b091d7178d5a9601699c.png",
@@ -20,10 +20,10 @@
     "index.html": "/ProjetoAppReceitas/index.html",
     "static/media/left.svg": "/ProjetoAppReceitas/static/media/left.cbfc231ada9704b21daca6be26a4ce62.svg",
     "main.e1182480.css.map": "/ProjetoAppReceitas/static/css/main.e1182480.css.map",
-    "main.2bc26388.js.map": "/ProjetoAppReceitas/static/js/main.2bc26388.js.map"
+    "main.5e8e1a9e.js.map": "/ProjetoAppReceitas/static/js/main.5e8e1a9e.js.map"
   },
   "entrypoints": [
     "static/css/main.e1182480.css",
-    "static/js/main.2bc26388.js"
+    "static/js/main.5e8e1a9e.js"
   ]
 }
