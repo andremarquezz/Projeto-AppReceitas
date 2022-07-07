@@ -139,6 +139,28 @@
   width: 200px;
 }
 
+.button-share-link {
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 15px;
+  margin-right: -152px;
+}
+
+.button-share-link strong {
+  background: rgb(179, 179, 233);
+  border-radius: 4px;
+  color: rgb(49, 58, 107);
+  font-size: 13px;
+  padding: 5px;
+}
+
+.button-action-liked {
+  background: none;
+  border: none;
+}
+
 .cards-recomended {
   margin-top: 20px;
 }

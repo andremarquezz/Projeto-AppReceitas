@@ -40,3 +40,38 @@
   color: white;
   padding: 2px 5px;
 }
+
+@media screen and ( min-width : 768px ) and ( max-width : 1023px ) {
+
+  .card-list {
+    grid-template-columns: repeat(4, 1fr);
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+
+  .card-list-item {
+    height: 300px;
+  }
+
+  .card-list-item img {
+    height: 200px;
+  }
+
+}
+
+@media screen and ( min-width : 1024px ) {
+
+  .card-list {
+    grid-template-columns: repeat(4, 1fr);
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+
+  .card-list-item {
+    height: 350px;
+  }
+
+  .card-list-item img {
+    height: 250px;
+  }
+}

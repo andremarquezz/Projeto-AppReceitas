@@ -31,3 +31,11 @@
 .ingrediets-item strong {
   padding: 20px 10px;
 }
+
+@media screen and ( min-width : 768px ) and ( max-width : 1023px ) {
+
+  .foods-ingredients-list {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 1200px;
+  }
+}

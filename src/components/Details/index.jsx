@@ -135,22 +135,30 @@ export default function Details() {
                   : recipeDetails.drinks[0].strDrink}
               </h1>
 
-              <button type="button" onClick={ () => copyToClipboard() }>
+              <button
+                type="button"
+                onClick={ () => copyToClipboard() }
+                className="button-share-link"
+              >
                 <img
                   className="icons-action"
                   src={ shareIcon }
                   alt="IconShare"
                   data-testid="share-btn"
                 />
-                {copied && <h1>Link copied!</h1>}
+                {copied && <strong>Link copied!</strong>}
               </button>
 
-              <button type="button" onClick={ () => btnFavorite() }>
+              <button
+                type="button"
+                onClick={ () => btnFavorite() }
+                className="button-action-liked"
+              >
                 <img
                   src={ buttonControl.favorite ? blackHeartIcon : haertIcon }
                   alt="IconHaert"
                   data-testid="favorite-btn"
-                  className="icons-action"
+                  className="icons-action-favorites"
                 />
               </button>
             </div>
