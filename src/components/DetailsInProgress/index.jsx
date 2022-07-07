@@ -138,15 +138,33 @@ export default function DetailsInProgress() {
                   : recipeDetails.drinks[0].strDrink}
               </h1>
 
-              <button type="button" onClick={ () => copyToClipboard() }>
-                <img src={ shareIcon } alt="IconShare" data-testid="share-btn" />
+              <button
+                type="button"
+                onClick={ () => copyToClipboard() }
+                className="button-share-link"
+              >
+                {copied ? (
+                  <strong>Link copied!</strong>
+                ) : (
+                  <img
+                    className="icons-action"
+                    src={ shareIcon }
+                    alt="IconShare"
+                    data-testid="share-btn"
+                  />
+                )}
               </button>
-              {copied && <h1>Link copied!</h1>}
-              <button type="button" onClick={ () => btnFavorite() }>
+
+              <button
+                type="button"
+                onClick={ () => btnFavorite() }
+                className="button-action-liked"
+              >
                 <img
                   src={ buttonControl.favorite ? blackHeartIcon : haertIcon }
                   alt="IconHaert"
                   data-testid="favorite-btn"
+                  className="icons-action-favorites"
                 />
               </button>
             </div>

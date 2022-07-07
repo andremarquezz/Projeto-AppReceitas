@@ -85,7 +85,7 @@ export default function Details() {
   };
 
   const copiedOnScreenTimer = () => {
-    const TEXT_TIMER = 5000;
+    const TEXT_TIMER = 2000;
     setCopied(true);
     const textTimeout = setTimeout(() => {
       setCopied(false);
