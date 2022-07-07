@@ -31,7 +31,7 @@
   <details>
     <summary>Sobre o Aplicativo</summary>
    </br>
-<p>Um aplicativo de receitas que tem como base de dados 2 APIs distintas, uma para comidas e outra para bebidas. No aplicativo é possível ver, buscar, filtrar, favoritar e acompanhar o progresso de preparação de receitas e drinks e caso o usuario saia da aplicação, é possivel continuar de onde foi pausada.</p>
+<p>Um aplicativo de receitas que tem como base de dados 2 APIs distintas, uma para comidas e outra para bebidas. No aplicativo é possível ver, buscar, filtrar, favoritar e acompanhar o progresso de preparação de receitas e drinks e caso o usuario saia da aplicação é possivel continuar de onde foi pausada.</p>
 
 ## APIs
 
