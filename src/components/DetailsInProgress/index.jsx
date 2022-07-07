@@ -65,7 +65,7 @@ export default function DetailsInProgress() {
   };
 
   const copiedOnScreenTimer = () => {
-    const TEXT_TIMER = 5000;
+    const TEXT_TIMER = 1000;
     setCopied(true);
     const textTimeout = setTimeout(() => {
       setCopied(false);
@@ -74,7 +74,7 @@ export default function DetailsInProgress() {
   };
 
   const copyToClipboard = () => {
-    copy(`http://localhost:3000/${split[1]}/${split[2]}`);
+    copy(`https://andremarquezz.github.io/ProjetoAppReceitas/#/${split[2]}`);
     copiedOnScreenTimer();
   };
 
