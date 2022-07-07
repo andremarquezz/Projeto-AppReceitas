@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/ProjetoAppReceitas/static/css/main.c077c714.css",
+    "main.js": "/ProjetoAppReceitas/static/js/main.043855c7.js",
+    "static/media/explore-food-icon.svg": "/ProjetoAppReceitas/static/media/explore-food-icon.fd7c290f826fcd2ba983c3ef415127d7.svg",
+    "static/media/explore-drink-icon.svg": "/ProjetoAppReceitas/static/media/explore-drink-icon.0e7b7e13e709750feb85ff93a7c41077.svg",
+    "static/media/logo.png": "/ProjetoAppReceitas/static/media/logo.b091d7178d5a9601699c.png",
+    "static/media/exploreIcon.svg": "/ProjetoAppReceitas/static/media/exploreIcon.076346236f69318885d7f53b65f0e4c7.svg",
+    "static/media/mealIcon.svg": "/ProjetoAppReceitas/static/media/mealIcon.40029e7f1422ba5a1bf1c10fa4f59030.svg",
+    "static/media/shareIcon.svg": "/ProjetoAppReceitas/static/media/shareIcon.87def1bd1dff9af9263f046c3b9bd31a.svg",
+    "static/media/nationalit.svg": "/ProjetoAppReceitas/static/media/nationalit.a91d75bcab0809a92ad3fe2cbcaa013d.svg",
+    "static/media/whiteHeartIcon.svg": "/ProjetoAppReceitas/static/media/whiteHeartIcon.2b822118952dc5140129c6349fcd0472.svg",
+    "static/media/surprase.svg": "/ProjetoAppReceitas/static/media/surprase.bafbb08cb705e3bd3db8691fd55ac961.svg",
+    "static/media/blackHeartIcon.svg": "/ProjetoAppReceitas/static/media/blackHeartIcon.083cb006913d197c95857ebfa2161db7.svg",
+    "static/media/drinkIcon.svg": "/ProjetoAppReceitas/static/media/drinkIcon.efc0d3c156e5da73e44a826c8d67b142.svg",
+    "static/media/ingredientes.svg": "/ProjetoAppReceitas/static/media/ingredientes.74f8f3753cab4a5fba3fb7da24113b5c.svg",
+    "static/media/searchIcon.svg": "/ProjetoAppReceitas/static/media/searchIcon.9f5c7ae6320a94974a93855fe7db8066.svg",
+    "static/media/atencao.svg": "/ProjetoAppReceitas/static/media/atencao.942495cf54e006d557623804a8f3e900.svg",
+    "static/media/profileIcon.svg": "/ProjetoAppReceitas/static/media/profileIcon.43c0b03eec8d87f482495f672540972d.svg",
+    "index.html": "/ProjetoAppReceitas/index.html",
+    "static/media/left.svg": "/ProjetoAppReceitas/static/media/left.cbfc231ada9704b21daca6be26a4ce62.svg",
+    "main.c077c714.css.map": "/ProjetoAppReceitas/static/css/main.c077c714.css.map",
+    "main.043855c7.js.map": "/ProjetoAppReceitas/static/js/main.043855c7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c077c714.css",
+    "static/js/main.043855c7.js"
+  ]
+}
