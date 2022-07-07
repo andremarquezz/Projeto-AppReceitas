@@ -31,7 +31,7 @@
   <details>
     <summary>Sobre o Aplicativo</summary>
    </br>
-<p>Um aplicativo de receitas que tem como base de dados 2 APIs distintas, uma para comidas e outra para bebidas. No aplicativo é possível ver, buscar, filtrar, favoritar e acompanhar o progresso de preparação de receitas e drinks.</p>
+<p>Um aplicativo de receitas que tem como base de dados 2 APIs distintas, uma para comidas e outra para bebidas. No aplicativo é possível ver, buscar, filtrar, favoritar e acompanhar o progresso de preparação de receitas e drinks e caso o usuario saia da aplicação, é possivel continuar de onde foi pausada.</p>
 
 ## APIs
 
@@ -50,7 +50,7 @@ Os end-points também são bastante ricos, você pode [vê-los aqui](https://www
   <details>
     <summary>Sobre o Desenvolvimento</summary>
     </br>
-  <p>Para o desenvolvimento da aplicação foi utilizado tecnologias como ReactJS, Redux Tool Kit, React Testing Library, React Router DOM e Jest.</p>
+  Para o desenvolvimento da aplicação foi utilizado tecnologias que você pode consultar <a href="#-tecnologias-utilizadas-no-desenvolvimento-do-projeto">aqui</a>.
   <p>Utilizamos o método Kanban em conjunto com a ferramenta trello e o layout foi construido no figma e tem como foco dispositivos móveis, durante o desenvolvimento foi utilizado a resolução 360 x 640.</p>
 <p>Realizamos DMs até a conclusão do projeto no Zoom, para alinhamentos e merge, toda a comunicação assincrona durante o dia de projeto foi feito com a ferramenta Slack</p>
   </details>
@@ -71,6 +71,9 @@ Os end-points também são bastante ricos, você pode [vê-los aqui](https://www
  </br>
 
 ### 🛠 Tecnologias utilizadas no desenvolvimento do projeto
+
+---
+
 <details>
     <summary>Tecnologias Utilizadas</summary>
     </br>
@@ -95,6 +98,8 @@ Os end-points também são bastante ricos, você pode [vê-los aqui](https://www
 
 # 🚀 Como executar o projeto
 
+---
+
 <details>
     <summary>Remotamente</summary>
     </br>
@@ -105,7 +110,9 @@ _Copie a URL abaixo e cole no seu navegador_
 https://andremarquezz.github.io/ProjetoAppReceitas/#/
 ```
   </details>
-</hr>
+  
+---
+
 <details>
  <summary>Localmente</summary>
     </br>
@@ -139,7 +146,9 @@ npm test
 ```
 
   </details>
-</hr>
+
+---
+
 </br>
 
 # 👨‍💻 Contribuidores
