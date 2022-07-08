@@ -28,9 +28,6 @@
 
 ---
 
-  <details>
-    <summary>Sobre o Aplicativo</summary>
-   </br>
 <p>Um aplicativo de receitas que tem como base de dados 2 APIs distintas, uma para comidas e outra para bebidas. No aplicativo é possível ver, buscar, filtrar, favoritar e acompanhar o progresso de preparação de receitas e drinks e caso o usuario saia da aplicação é possivel continuar de onde foi pausada.</p>
 
 ## APIs
@@ -43,8 +40,19 @@ Os end-points são bastante ricos, você pode [vê-los aqui](https://www.themeal
 ### The CockTailDB API
 O [CockTailDB](https://www.themealdb.com/) é um banco de dados aberto de bebidas, mantido pela comunidade, com receitas e ingredientes de todo o mundo.
 Os end-points também são bastante ricos, você pode [vê-los aqui](https://www.thecocktaildb.com/api.php)
-  </details>
 
+---
+
+ <details>
+    <summary>Imagens do Aplicativo</summary>
+    </br>
+  <p>Exemplos de telas do Aplicativo.</p>
+ <p align="center"> 
+  <img src="src/images/telas.jpg">
+ </p>
+ 
+  </details>
+  
 ---
 
   <details>
@@ -57,26 +65,11 @@ Os end-points também são bastante ricos, você pode [vê-los aqui](https://www
 
 ---
 
-  <details>
-    <summary>Sobre imagens do Aplicativo</summary>
-    </br>
-  <p>Exemplos de telas do Aplicativo.</p>
- <p align="center"> 
-  <img src="src/images/telas.jpg">
- </p>
-  </details>
-
----
-
  </br>
 
 ### 🛠 Tecnologias utilizadas no desenvolvimento do projeto
 
 ---
-
-<details>
-    <summary>Tecnologias Utilizadas</summary>
-    </br>
 
 - **[React](https://github.com/facebook/react)**
 
@@ -90,8 +83,6 @@ Os end-points também são bastante ricos, você pode [vê-los aqui](https://www
 
   > Veja o arquivo [package.json](https://github.com/andremarquezz/ProjetoAppReceitas/blob/main/package.json)
 
-  </details>
-
 ---
 
  </br>
@@ -100,16 +91,13 @@ Os end-points também são bastante ricos, você pode [vê-los aqui](https://www
 
 ---
 
-<details>
-    <summary>Remotamente</summary>
-    </br>
+_Remotamente_
 
 _Copie a URL abaixo e cole no seu navegador_
 
 ```jsx
 https://andremarquezz.github.io/ProjetoAppReceitas/#/
 ```
-  </details>
   
 ---
 
