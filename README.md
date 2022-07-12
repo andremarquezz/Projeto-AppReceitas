@@ -101,8 +101,7 @@ https://andremarquezz.github.io/ProjetoAppReceitas/#/
   
 ---
 
-<details>
- <summary>Localmente</summary>
+Localmente
     </br>
 
 _Pré-requisitos_
@@ -132,8 +131,6 @@ npm start
 ```jsx 
 npm test
 ```
-
-  </details>
 
 ---
 
