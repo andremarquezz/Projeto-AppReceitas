@@ -1,6 +1,5 @@
 {
-  "name": "recipes-app-test",
-  "homepage": "https://andremarquezz.github.io/ProjetoAppReceitas",
+  "name": "recipes-app",
   "version": "0.1.0",
   "private": true,
   "engines": {
