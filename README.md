@@ -96,7 +96,7 @@ _Remotamente_
 _Copie a URL abaixo e cole no seu navegador_
 
 ```jsx
-https://andremarquezz.github.io/ProjetoAppReceitas/#/
+https://projetoappreceitas.vercel.app/
 ```
   
 ---
